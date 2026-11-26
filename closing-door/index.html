@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>닫히는 문 — 1960~1987</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: 무게 있는 회고, 신문사 편집국의 밤
+   IDEA: 1960~70년대 신문 지면과 낡은 나무 문
+   PICTURE: 장면 무대 + 점점 닫히는 문 게이지
+   COLOUR and TYPE: 바랜 신문지, 먹색, 벽돌 적색, 올리브 / 도현(제목), 본고딕 Noto Sans KR(본문)
+   LAYOUT: 상단 상태줄, 16:9 무대, 아래 대사창 — 600px 이하에서 세로로 쌓기 */
+:root{color-scheme:light dark;
+--bg:light-dark(#d9ccb0,#14110d);--paper:light-dark(#f1e7d0,#231d16);--paper2:light-dark(#e6d8b9,#2c251c);
+--ink:light-dark(#2b231b,#ece1cb);--muted:light-dark(#6b5c49,#b3a58c);--brick:light-dark(#9e3b2b,#e07a62);
+--olive:light-dark(#56633a,#a9b878);--navy:light-dark(#2e3d55,#9fb3d4);--wood:#6e4527;--line:light-dark(#b8a684,#4a3f31)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.7 "Noto Sans KR",sans-serif;overflow-x:clip}
+button,select,textarea,input{font:inherit;color:inherit}
+.h{font-family:"Do Hyeon",sans-serif;font-weight:400;letter-spacing:0}
+.wrap{max-width:1080px;margin:0 auto;padding:12px max(2vw,10px) 40px}
+.btn{font-family:"Do Hyeon",sans-serif;font-size:18px;min-height:44px;padding:8px 18px;border:2px solid var(--ink);background:var(--paper);border-radius:4px;cursor:pointer;box-shadow:3px 3px 0 var(--ink)}
+.btn:hover{background:var(--paper2)}.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.btn.pri{background:var(--brick);color:#fff8ec;border-color:var(--ink)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.sm{font-size:15px;min-height:36px;padding:4px 12px;box-shadow:2px 2px 0 var(--ink)}
+:focus-visible{outline:3px solid var(--brick);outline-offset:2px}
+/* 상단 */
+#hud{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:8px 12px;background:var(--paper);border:2px solid var(--ink);border-radius:4px;margin-bottom:10px}
+#hud .doorMini{width:38px;height:48px}
+#hud .chap{flex:1 1 200px}
+#hud .chap b{display:block;font-size:20px;line-height:1.1}
+#hud .chap span{font-size:14px;color:var(--muted)}
+.stat{font-family:"Do Hyeon";font-size:16px;padding:4px 10px;border:1px solid var(--line);border-radius:3px;white-space:nowrap}
+/* 무대 */
+#stage{position:relative;aspect-ratio:16/9;border:2px solid var(--ink);border-radius:4px;overflow:hidden;background:#333}
+.bg{position:absolute;inset:0}
+.bg .fb{position:absolute;inset:0;align-items:flex-end;justify-content:center;font-size:clamp(40px,9vw,96px);letter-spacing:.2em;padding-bottom:16%;opacity:.85}
+.bg .cap{position:absolute;left:12px;top:10px;font-family:"Do Hyeon";font-size:15px;background:rgba(20,15,10,.7);color:#f1e7d0;padding:3px 10px;border-radius:3px}
+.pic{position:relative;display:block;width:100%;height:100%}
+.pic img{width:100%;height:100%;object-fit:cover;image-rendering:pixelated;display:block}
+.pic.contain img{object-fit:contain;object-position:center bottom}
+.pic .fb{display:none}.pic.nf .fb{display:flex}
+#portrait{position:absolute;left:2%;bottom:0;width:24%;aspect-ratio:1/1.15;transition:opacity .3s}
+.fbp{position:absolute;inset:8% 6% 0;border-radius:50% 50% 8px 8px;background:var(--c);border:3px solid #1a140e;align-items:center;justify-content:center;flex-direction:column;box-shadow:inset -10px -10px 0 rgba(0,0,0,.18)}
+.fbp .f{font-size:clamp(34px,7vw,70px);line-height:1}.fbp .acc{position:absolute;right:-4%;bottom:6%;font-size:clamp(20px,3.5vw,36px)}
+/* 대사창 */
+#dlg{position:relative;margin-top:10px;background:var(--paper);border:3px solid var(--wood);border-radius:4px;padding:16px 18px 14px;min-height:150px;box-shadow:inset 0 0 0 2px var(--paper2),4px 4px 0 rgba(0,0,0,.25)}
+#dlg .name{position:absolute;top:-16px;left:14px;font-family:"Do Hyeon";font-size:17px;padding:2px 12px;background:var(--c,var(--navy));color:#fff8ec;border:2px solid var(--ink);border-radius:3px}
+#dlg .txt{font-size:19px;font-weight:500;line-height:1.75;min-height:3.3em;max-width:66ch}
+#dlg .txt.nar{color:var(--muted);font-weight:400}
+#dlg .row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:10px}
+.opts{display:grid;gap:8px;margin-top:8px}
+.opt{text-align:left;font-size:17px;min-height:44px;padding:8px 14px;border:2px solid var(--line);background:var(--paper2);border-radius:4px;cursor:pointer}
+.opt:hover{border-color:var(--ink)}.opt.sel{border-color:var(--brick);background:color-mix(in srgb,var(--brick) 14%,var(--paper))}
+.reply{margin-top:10px;padding:10px 14px;border-left:4px solid var(--olive);background:var(--paper2)}
+/* 패널(미니게임·기사) */
+#panel{background:var(--paper);border:2px solid var(--ink);border-radius:4px;padding:clamp(14px,3vw,28px)}
+#panel h2{font-family:"Do Hyeon";font-weight:400;font-size:clamp(26px,4vw,36px);line-height:1.1;margin:0 0 4px;text-wrap:balance}
+#panel .lead{color:var(--muted);margin:0 0 16px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;min-height:52px;padding:10px;border:2px dashed var(--line);border-radius:4px;margin-bottom:14px}
+.chip{font-size:16px;min-height:44px;padding:6px 12px;border:2px solid var(--ink);background:#fffaf0;color:#2b231b;border-radius:3px;cursor:pointer;text-align:left;max-width:100%}
+.chip.sel{background:var(--brick);color:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--brick) 35%,transparent)}
+.chip.shake{animation:sh .35s}
+@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.bins{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:10px}
+.bin{border:2px solid var(--ink);border-radius:4px;background:var(--paper2);padding:10px;min-height:120px;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;align-items:stretch}
+.bin>b{font-family:"Do Hyeon";font-weight:400;font-size:19px}
+.bin small{color:var(--muted);font-size:14px}
+.bin .in{font-size:15px;padding:4px 8px;background:var(--paper);border-left:3px solid var(--olive)}
+.bin:hover{outline:2px solid var(--brick)}
+.msg{min-height:1.6em;margin:10px 0;font-weight:700}
+.msg.ok{color:var(--olive)}.msg.no{color:var(--brick)}
+.ans{color:var(--brick);font-family:"Do Hyeon";font-size:14px;margin-left:4px}
+/* 기사 */
+.heads{display:grid;gap:10px}
+.head{font-family:"Do Hyeon";font-size:clamp(19px,2.6vw,24px);line-height:1.25;text-align:left;padding:12px 16px;border:2px solid var(--ink);background:#fbf4e2;color:#211a12;border-radius:2px;cursor:pointer}
+.head.sel{outline:4px solid var(--brick)}
+.head.good{background:#e3ecd2}.head.bad{background:#f3d9d0}
+.cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:10px}
+.card{position:relative;text-align:left;padding:12px 12px 10px;border:2px solid #3a2e22;background:#f7eed8;color:#2b231b;border-radius:3px;font-size:15px;line-height:1.5;cursor:default}
+button.card{cursor:pointer}
+.card .ty{display:inline-block;font-family:"Do Hyeon";font-size:13px;padding:1px 8px;color:#fff;border-radius:2px;margin-bottom:4px}
+.card b{display:block;font-family:"Do Hyeon";font-weight:400;font-size:18px;line-height:1.2;margin-bottom:4px}
+.card.sel{outline:4px solid var(--brick)}
+.card.locked{opacity:.35;filter:grayscale(1)}
+.card .src{display:block;margin-top:6px;font-size:13px;color:#6b5c49}
+.ty.조문{background:#2e3d55}.ty.통계{background:#56633a}.ty.구호{background:#9e3b2b}.ty.사료{background:#6e4527}.ty.기록{background:#4b4b4b}.ty.헤드라인{background:#7a5a1e}
+/* 오버레이 */
+#ov{position:fixed;inset:0;background:rgba(15,11,7,.78);display:none;align-items:center;justify-content:center;padding:16px;z-index:10}
+#ov.on{display:flex}
+#ov .box{background:var(--paper);border:3px solid var(--ink);border-radius:4px;padding:20px;max-width:min(860px,100%);max-height:90vh;overflow:auto;text-align:center}
+#ov .box.wide{text-align:left;width:100%}
+.bigdoor{width:min(240px,60vw);height:min(300px,75vw);margin:6px auto 10px}
+.bigdoor .pic{animation:fade .8s}
+@keyframes fade{from{opacity:0;transform:scale(.97)}}
+.slam{animation:slam .5s}
+@keyframes slam{30%{transform:translateX(-5px)}60%{transform:translateX(5px)}}
+.toastcard{max-width:360px;margin:10px auto}
+/* 표지 */
+.cover{background:var(--paper);border:2px solid var(--ink);border-radius:4px;overflow:hidden}
+.cover .art{position:relative;aspect-ratio:16/9;background:linear-gradient(90deg,#2a2f3a 0 30%,#8a6a3c 50%,#2a2f3a 70%)}
+.cover .art .fb{position:absolute;inset:0;align-items:center;justify-content:center}
+.cover .ttl{padding:20px clamp(16px,4vw,36px) 26px}
+.cover h1{font-family:"Do Hyeon";font-weight:400;font-size:clamp(40px,7vw,64px);line-height:1.05;margin:0}
+.cover p{margin:6px 0 16px;color:var(--muted)}
+.field{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.field input{font-size:16px;min-height:44px;padding:6px 10px;border:2px solid var(--ink);background:#fffaf0;color:#2b231b;border-radius:3px;flex:1 1 160px}
+.toggle{display:flex;align-items:center;gap:8px;font-size:15px;min-height:44px}
+.toggle input{width:20px;height:20px}
+.chs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:10px;margin-top:10px}
+.ch{text-align:left;padding:14px;border:2px solid var(--ink);background:var(--paper2);border-radius:4px;cursor:pointer}
+.ch b{font-family:"Do Hyeon";font-weight:400;font-size:20px;display:block}
+.ch span{font-size:14px;color:var(--muted)}
+table.cmp{width:100%;border-collapse:collapse;font-size:15px;margin-top:10px}
+table.cmp th,table.cmp td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+table.cmp th{font-family:"Do Hyeon";font-weight:400;background:var(--paper2)}
+textarea{width:100%;min-height:110px;font-size:16px;padding:10px;border:2px solid var(--ink);border-radius:3px;background:#fffaf0;color:#2b231b}
+select{font-size:16px;min-height:44px;padding:4px 8px;border:2px solid var(--ink);border-radius:3px;background:#fffaf0;color:#2b231b;width:100%}
+.m2row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr) minmax(0,1.4fr);gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.m2row b{font-family:"Do Hyeon";font-weight:400;font-size:19px}
+.redline{background:linear-gradient(transparent 45%,#c0281c 45% 58%,transparent 58%)}
+.result{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:10px;margin:14px 0}
+.result div{border:2px solid var(--ink);padding:12px;background:var(--paper2);text-align:center}
+.result b{display:block;font-family:"Do Hyeon";font-weight:400;font-size:clamp(28px,5vw,40px);line-height:1.1}
+.endline{font-family:"Do Hyeon";font-size:clamp(24px,4vw,34px);line-height:1.25;text-align:center;margin:10px 0;text-wrap:balance}
+.note{font-size:13px;color:var(--muted)}
+.hidden{display:none!important}
+.dstages{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+.dst{display:grid;gap:2px;padding:8px;border:2px solid var(--line);border-radius:4px;background:var(--paper2);font-size:14px;line-height:1.35}
+.dst.now{border-color:var(--brick);box-shadow:0 0 0 2px color-mix(in srgb,var(--brick) 30%,transparent)}
+.dst .dimg{display:block;height:72px}.dst b{font-family:"Do Hyeon";font-weight:400;font-size:18px}.dst small{color:var(--muted)}
+.desk{margin-top:6px;padding:12px 16px;background:var(--paper2);border:2px solid var(--wood);border-radius:4px;font-size:17px}.desk b{font-family:"Do Hyeon";font-weight:400;margin-right:6px}
+.why{font-family:"Noto Sans KR",sans-serif;font-size:15px;margin-top:4px}
+.card.cok{outline:3px solid #56633a}.card.cno{outline:3px solid #9e3b2b;opacity:.85}
+.mtab{border:2px solid var(--ink);border-radius:4px;overflow:hidden}
+.mhead,.mrow{display:grid;grid-template-columns:minmax(0,1fr) 96px 96px;gap:8px;align-items:center;padding:8px 10px}
+.mhead{background:var(--paper2);font-size:14px}.mhead b{font-family:"Do Hyeon";font-weight:400;text-align:center;line-height:1.2}
+.mgroup{font-family:"Do Hyeon";font-size:18px;padding:6px 10px;background:var(--ink);color:var(--paper)}
+.mrow{border-top:1px solid var(--line)}.mrow.ok{background:color-mix(in srgb,#56633a 14%,transparent)}.mrow.no{background:color-mix(in srgb,#9e3b2b 14%,transparent)}
+.tog{justify-self:center;width:44px;height:44px;border:2px solid var(--ink);border-radius:4px;background:#fffaf0;color:#2b231b;font-size:22px;cursor:pointer}.tog.on{background:var(--olive);color:#fff}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.done{font-size:14px;color:var(--olive);margin-left:6px}
+.tpanel{margin-top:18px;padding:14px;border:2px dashed var(--brick);border-radius:4px}
+.qbox{font-size:18px;font-weight:500;padding:12px 16px;border-left:5px solid var(--brick);background:var(--paper2);margin:6px 0 12px}
+.mylog{list-style:none;padding:0;margin:0;display:grid;gap:6px}.mylog li{display:grid;gap:2px;padding:8px 12px;background:var(--paper2);border-radius:3px}.mylog span{font-size:14px;color:var(--muted)}
+@media(max-width:600px){
+ .mhead,.mrow{grid-template-columns:minmax(0,1fr) 64px 64px}
+ .mhead b{font-size:13px}
+ #portrait{width:30%}
+ .m2row{grid-template-columns:1fr}
+ #dlg .txt{font-size:17px}
+ #hud .chap b{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div id="hud" class="hidden">
+    <button class="doorMini" id="doorMini" aria-label="닫히는 문 설명 보기" style="border:0;padding:0;background:none;cursor:pointer"></button>
+    <div class="chap"><b id="chT"></b><span id="chY"></span></div>
+    <span class="stat" id="stCred">신뢰도 —</span>
+    <span class="stat" id="stCard">사료 0</span>
+    <button class="btn sm" id="bArchive">🗂️ 사료함</button>
+    <button class="btn sm hidden" id="bSkip">⏭ 다음 활동으로</button>
+    <button class="btn sm" id="bHome">처음으로</button>
+  </div>
+  <div id="main"></div>
+</div>
+<div id="ov"><div class="box" id="ovBox"></div></div>
+
+<script>
+{
+/* ============ 데이터 ============ */
+const BG={
+B1:{n:'1960년 봄, 서울 거리',g:'linear-gradient(#f3c9c9,#e7d9b0 55%,#a88b62)',e:'🌸🧑‍🎓🚋🧑‍🎓🌸'},
+B2:{n:'국회 의사당',g:'linear-gradient(#5b4632,#8a6a45 50%,#3f2f20)',e:'🪑🎙️🪑'},
+B3:{n:'새벽일보 편집국',g:'linear-gradient(#4a3b2a,#9b7d55 60%,#5a4530)',e:'📰⌨️☎️💡'},
+B4:{n:'1961년 5월 16일 새벽',g:'linear-gradient(#5f6f80,#8c9aa6 60%,#3c4650)',e:'🌫️🚛🪖🚛'},
+B5:{n:'1964년 6월, 대학 교문 앞',g:'linear-gradient(#8f9396,#b9b2a0 60%,#5f5a50)',e:'✊🧑‍🎓💨🛡️'},
+B6:{n:'1960년대 부산항',g:'linear-gradient(#e7b98a,#8fa7b3 55%,#3e5566)',e:'🚢🪖👋'},
+B7:{n:'봉제 공장 다락방',g:'linear-gradient(#3a2c1f,#6b5236 60%,#2a1f15)',e:'🧵🪡💡🧵'},
+B10:{n:'1972년 10월 17일 밤, 서울',g:'linear-gradient(#1c2638,#34445e 60%,#151b26)',e:'🌙🪖🚧🛻'},
+B11:{n:'1979년 8월, 신민당사',g:'linear-gradient(#6b6258,#9d8f7c 60%,#4b433a)',e:'👩‍🏭👩‍🏭✊👩‍🏭'},
+B12:{n:'1979년 10월, 부산 밤거리',g:'linear-gradient(#21263b,#c26a33 70%,#2a1c14)',e:'🔥✊🧑‍🎓✊🔥'},
+B13:{n:'1979년 10월 27일 새벽, 작은 방',g:'linear-gradient(#151a24,#3b3226 70%,#14100b)',e:'📻📓🪟'},
+B14:{n:'1980년 5월, 서울역 앞',g:'linear-gradient(#c9b48a,#9a8a6a 60%,#4a4034)',e:'🚉✊🧑‍🎓✊'},
+B15:{n:'1980년 5월, 광주 금남로',g:'linear-gradient(#5d6470,#8a7d6a 60%,#3a3128)',e:'🏢🍙🕯️🏢'},
+B16:{n:'1987년 6월, 서울 도심',g:'linear-gradient(#e9c27a,#a98b5e 60%,#4a3a28)',e:'🏙️✊📣✊🏙️'}
+};
+const FACE={neutral:'🙂',smile:'😊',surprised:'😮',worried:'😟',angry:'😠',sad:'😢',determined:'😤',thinking:'🤔'};
+const CHAR={
+hg:{k:'hangyeol',n:'세마',c:'#2e3d55',a:'📝'},
+yun:{k:'yun',n:'남궁 선배',c:'#6e4527',a:'👓'},
+mi:{k:'miyoung',n:'유진',c:'#56633a',a:'🎵'},
+sun:{k:'sunja',n:'정민',c:'#9e3b2b',a:'🧵'},
+dong:{k:'dongsu',n:'승렬',c:'#7a5a1e',a:'🌾'},
+cen:{k:'censor',n:'검열관',c:'#1e1e1e',a:'🖍️'}
+};
+const CARDS={
+c1:['조문','3차 개헌 (1960.6)','허정 과도 정부 때 개헌. 내각 책임제와 양원제(민의원·참의원) 국회가 주요 내용. 대통령은 국회에서 뽑고, 실권은 국무총리가 이끄는 내각이 가짐.','헌법 개정 요지 · 교과서 88쪽'],
+c2:['통계','7·29 총선 결과 (1960)','야당이던 민주당이 압승(민의원 233석 중 175석). 대통령 윤보선, 국무총리 장면의 민주당 정부 수립.','선거 결과 · 교과서 88쪽'],
+c3:['구호','4·19 이후 통일 운동 (1961)','“이 땅이 뉘 땅인데, 오도 가도 못하는가! 가자 북으로! 오라 남으로!” — 학생들은 판문점에서 남북 학생 회담을 열자고 제안.','통일 운동 구호 · 교과서 88쪽'],
+c4:['사료','장면 내각의 시정 방침 (요약, 1960)','일본과 국교 정상화, 유엔 감시하 남북한 자유선거로 통일, 공무원 재산 등록·경찰 중립화, 부정 선거 원흉·부정 축재자 처벌, 외자 도입으로 경제 개발 계획 추진.','『동아일보』, 1960. 8. 28. · 교과서 88쪽'],
+c5:['헤드라인','새벽일보 1960년 가을 (가상)','민주당 신·구파 파벌 싸움 격화… 부정 선거 책임자 처벌은 지지부진','가상의 신문 기사'],
+c6:['기록','교원 노조 결성 (1960)','4·19 이후 학생·노동자·농민뿐 아니라 교원들도 노동조합을 만들며 목소리를 높임.','교과서 88쪽'],
+c7:['사료','혁명 공약 (1961)','“1. 반공을 국시의 제일의로 삼는다. 4. 국가 자주 경제 재건에 총력을 기울인다. 6. 과업이 성취되면 양심적인 정치인들에게 정권을 이양한다.”','혁명 공약 · 교과서 90쪽'],
+c8:['조문','5차 개헌 (1962)','대통령 중심제로 헌법 개정. 이어 민주 공화당 창당.','헌법 개정 요지 · 교과서 90쪽'],
+c9:['통계','제5대 대통령 선거 (1963)','박정희는 군대로 복귀하겠다는 약속을 어기고 민간인 신분으로 출마. 민주 공화당 후보로 윤보선을 누르고 당선(약 15만 표 차).','선거 결과 · 교과서 90쪽'],
+c10:['사료','김종필–오히라 비밀 회담 (1962)','중앙정보부장 김종필과 일본 외무상 오히라가 비밀리에 만나 국교 정상화 회담 진행. 식민 지배 사죄·배상, 약탈 문화유산 반환은 빠짐.','교과서 90쪽'],
+c11:['구호','6·3 시위 (1964)','“제2의 한일 합방 결사 반대”, “굴욕적 대일 외교 반대” — 대학생·고등학생의 반대 시위에 시민이 동조. 정부는 비상계엄령을 선포하고 군대로 진압.','시위 구호 · 교과서 90쪽'],
+c12:['사료','브라운 각서 (요약, 1966)','미국은 파병 비용을 부담하고 한국군 장비를 현대화한다. 베트남 주둔 한국군 지원 사업과 현지 사업에 한국을 참여시킨다. 한국에 군사 원조와 차관을 제공한다.','주한 미국 대사 브라운의 각서 · 교과서 91쪽'],
+c13:['조문','3선 개헌 — 6차 개헌 (1969)','대통령의 3회 연임 허용. 여당이 야당 의원들을 따돌리고 국회 별관에서 편법으로 통과.','교과서 91쪽'],
+c14:['통계','제7대 대통령 선거 (1971)','개정된 헌법에 따라 치른 선거에서 박정희가 야당 후보 김대중을 힘겹게 누르고 당선(약 94만 표 차).','선거 결과 · 교과서 91쪽'],
+c39:['기록','동백림 사건 (1967)','중앙정보부가 동베를린 거점 간첩단이라며 예술인·교수·학생을 연행. 재판에서 간첩 혐의는 입증되지 않음. 이후 조사에서 정부가 사건을 확대·과장한 것으로 밝혀짐.','교과서 91쪽'],
+c17:['사료','7·4 남북 공동 성명 (1972)','닉슨 독트린 이후 냉전 완화 속에 남북이 대화에 나서 자주·평화·민족적 대단결의 통일 원칙에 합의.','교과서 92쪽'],
+c18:['조문','유신 헌법 — 7차 개헌 (1972)','통일 주체 국민 회의에서 대통령 선출. 임기 6년, 중임 제한 없음. 대통령이 국회 의원 3분의 1 추천권·국회 해산권·법관 임명권·긴급 조치권을 가짐 → 삼권 분립 무력화.','교과서 92쪽'],
+c37:['헤드라인','체육관 선거 (1972.12.23)','통일 주체 국민 회의 대의원들이 체육관에서 단독 후보에게 투표: 찬성 2,357표, 반대 0표, 무효 2표. 득표율 99.92%.','『매일경제』 보도 요지 · 교과서 92쪽'],
+c26:['기록','개헌 청원 100만 인 서명 운동 (1973)','김대중 납치 사건을 계기로 유신 반대 운동이 활발해짐. 장준하 등 민주 인사들이 서명 운동을 전개하고, 학생들은 유신 헌법 철폐 시위를 이어 감.','교과서 92쪽'],
+c19:['조문','긴급 조치 1호 (일부, 1974)','(유신) 헌법을 부정, 비방 및 개정, 폐지를 요구하는 행위를 금함. 이 조치를 위반하거나 비방한 자는 영장 없이 체포·수색하고 비상 군법 회의에서 심판.','교과서 92쪽'],
+c20:['기록','제2차 인혁당 사건 (1974~1975)','중앙정보부가 학생 운동 배후에 인민 혁명당이 있다며 관련자를 체포. 8명에게 사형이 선고되고 곧바로 집행됨. 2007년 재심에서 무죄.','교과서 93쪽'],
+c38:['사료','3·1 민주 구국 선언 (일부, 1976)','명동 성당에서 정치인·종교 인사들이 발표. 긴급 조치 철폐와 투옥된 민주 인사·학생 석방, 의회 정치 회복, 사법권 독립을 요구.','교과서 93쪽'],
+c22:['통계','제10대 국회 의원 선거 (1978)','야당인 신민당의 득표율(32.8%)이 집권 여당 민주 공화당(31.7%)을 앞지름.','선거 결과 · 교과서 93쪽'],
+c23:['기록','YH 무역 사건 (1979)','회사 측의 일방적 폐업에 항의해 신민당사에서 농성하던 노동자들을 경찰이 강경 진압. 그 과정에서 여성 노동자 한 명 사망.','교과서 93쪽'],
+c24:['기록','김영삼 국회 의원 제명 (1979)','야당이 YH 무역 사건을 계기로 비판을 높이자, 여당이 신민당 총재 김영삼을 국회 의원에서 제명.','교과서 93쪽'],
+c25:['사료','부마 민주 항쟁 (1979.10)','부산대에 뿌려진 「민주 투쟁 선언문」과 함께 ‘유신 철폐’, ‘독재 타도’ 시위 시작 → 시내로 확산, 시민 동참 → 부산 일대 계엄령 → 마산 공단 지역으로 확산.','교과서 93쪽'],
+c27:['기록','12·12 사태 (1979)','전두환이 이끄는 일부 군인이 병력을 이끌고 반란을 일으켜 군사권 장악. 신군부 세력이 주요 정부 기관과 언론을 장악.','교과서 94쪽'],
+c28:['기록','서울역 시위 (1980.5.15)','‘서울의 봄’의 절정. 10만여 명의 학생과 시민이 모여 비상계엄 해제와 신군부 퇴진을 요구.','교과서 94쪽'],
+c29:['사료','『전남매일신문』 기자 일동 (1980.5.20)','“신문에는 단 한 줄도 싣지 못하였다. 이에 우리는 부끄러워 붓을 놓는다.” 검열로 진실을 보도하지 못한 기자들의 공동 사직.','교과서 94쪽'],
+c30:['사료','광주 시민 궐기문 (요지, 1980.5.25)','계엄 당국이 공수 부대를 대량 투입해 무차별 살상을 저질러 총을 들 수밖에 없었으며, 협상이 올바로 진행되면 즉각 총을 놓겠다고 밝힘.','교과서 95쪽'],
+c31:['기록','5·18의 법적 정당성과 기록','1997년 대법원은 광주 시민의 시위가 헌법 질서를 지키기 위한 정당한 행위였다고 밝힘. 2011년 관련 기록물이 유네스코 세계 기록 유산으로 등재.','교과서 96쪽'],
+c36:['기록','전두환 정부의 성립 (1980~1981)','국가 보위 비상 대책 위원회 설치, 언론 통폐합, 삼청 교육대. 전두환이 통일 주체 국민 회의를 통해 대통령 취임 → 7년 단임 대통령 간선제 개헌 → 1981년 다시 당선.','교과서 97쪽'],
+c32:['사료','보도 지침 (일부, 1986)','정부가 언론사에 보도 여부, 기사 제목, 용어, 분량까지 지시. 예: “검찰 발표 전문은 꼭 실어 줄 것.”','교과서 97쪽'],
+c33:['사료','4·13 호헌 조치 (1987)','임기 중 개헌은 불가능하며 현행 헌법에 따라 후임자에게 정부를 넘기겠다고 밝히고, 대통령 직선제 개헌 논의 자체를 금지.','전두환 특별 담화 요지 · 교과서 97~98쪽'],
+c34:['기록','박종철 고문치사 사건 (1987.1)','대학생 박종철이 수사 과정에서 고문으로 사망. 경찰이 이를 은폐·조작한 사실이 알려지며 국민의 분노 폭발.','교과서 97쪽'],
+c35:['사료','6·29 선언 (일부, 1987)','여야 합의하에 조속히 대통령 직선제 개헌을 하고, 1988년 2월 평화적 정부 이양을 실현. 시국 관련 사범 석방.','민주 정의당 대표 노태우 · 교과서 98쪽']
+};
+const DOORLBL=['활짝 열림','닫히기 시작','거의 닫힘','닫힘','자물쇠','금이 감'];
+
+const CH=[
+{t:'너무 많은 자유, 너무 짧은 봄',y:'1960~1961 · 장면 내각',door:0,s:[
+['bg','B1'],
+['nar','1960년 4월 26일. 국민의 요구에 굴복한 이승만이 대통령 자리에서 물러나겠다는 성명을 발표했다. 거리는 학생과 시민으로 가득 찼다.'],
+['hg:smile','나는 스물한 살, 대학 4학년 세마. 꿈은 역사 교사다. 지난 일주일 동안 거리에서 본 것을 수첩에 빼곡히 적었다.'],
+['hg:thinking','역사를 가르치려면, 먼저 지금 이 순간의 역사를 똑똑히 기록해 둬야 하지 않을까. 그래서 신문사 문을 두드렸다.'],
+['hg:thinking','문이 활짝 열렸다. 그런데… 이제 사람들은 무엇을 원할까?'],
+['choice','독재자가 물러난 다음 날, 사람들은 무엇을 가장 먼저 원했을까?',['부정 선거를 저지른 사람들의 처벌','남북이 다시 만나는 통일','일하고 배우는 곳에서의 권리'],'모두 정답에 가까워. 4·19 혁명 이후 각계각층의 민주화 요구가 한꺼번에 쏟아져 나왔거든. 하나씩 받아 적어 보자.'],
+['bg','B3'],
+['yun:neutral','네가 대학 신문 쓰던 그 세마지? 오늘부터 새벽일보 수습이다.'],
+['yun:smile','받아 적는 게 기자 일의 절반이야. 나머지 절반은 확인이고. 사료 없이 쓰는 기사는 소문이랑 다를 게 없어.'],
+['nar','4·19 혁명 이후 허정 과도 정부가 출범하여 3·15 부정 선거를 무효로 하고 개헌을 추진하였다.'],
+['card','c1'],
+['hg:surprised','대통령은 국회에서 뽑고, 실제 나랏일은 국무총리와 내각이 맡는다… 문이 정말 활짝 열린 셈이네.'],
+['bg','B2'],
+['nar','이어진 총선거에서 야당인 민주당이 압승을 거두었다. 대통령은 윤보선, 국무총리는 장면으로 하는 민주당 정부가 수립되었다.'],
+['card','c2'],
+['nar','장면 내각은 경제 건설을 앞세웠다. 경제 개발 5개년 계획을 세우고 국토 개발 사업을 추진했으며, 지방 자치제를 실시하고 공무원 공개 채용 제도를 도입하였다.'],
+['card','c4'],
+['bg','B1'],
+['mi:smile','세마 씨! 우리 교원들도 노동조합을 만들었어요. 아이들 앞에서 부끄럽지 않은 선생이 되고 싶어서요.'],
+['card','c6'],
+['hg:thinking','유진 씨는 고등학교 음악 교사다. 학생, 노동자, 농민뿐 아니라 교원들도 목소리를 높였다. 부정 선거 책임자와 부정 축재자를 처벌하라는 요구도 거셌다.'],
+['nar','이승만 정부의 탄압으로 억눌려 있던 혁신 세력의 통일 운동도 활기를 띠었다. 학생들은 분단이 한국 사회의 근본 문제라고 보고 중립화 통일, 남북 협상을 주장하며 판문점에서 남북 학생 회담을 열자고 제안했다.'],
+['card','c3'],
+['bg','B3'],
+['yun:worried','그런데 장면 내각은 이 요구들을 제대로 받아 안지 못하고 있어. 민간 통일 운동에는 부정적이고, 부정 선거 책임자 처벌에도 소극적이지.'],
+['yun:angry','게다가 민주당 안에서는 파벌 싸움이야. 정치가 혼란스러울수록 누군가는 그걸 기회로 본다.'],
+['card','c5'],
+['hg:determined','쏟아진 요구들을 정리해 보자. 기사는 정리에서 시작한다.'],
+['mini','m1'],
+['article'],
+['column','장면 내각은 실패한 정부였을까, 기회를 빼앗긴 정부였을까?',[['실패한 정부였다','그렇게 볼 근거가 있지. 다만 1년도 채 안 되는 시간이었다는 점, 그 사이 경제 개발 계획과 지방 자치제를 준비했다는 점도 함께 생각해 봐.'],['기회를 빼앗긴 정부였다','5·16이 개혁을 끊어 버린 건 사실이야. 그래도 장면 내각이 부정 선거 처벌이나 통일 운동 요구를 제대로 받아들이지 못한 한계는 없었을까?'],['둘 다 맞다','균형 잡힌 시각이야. 그렇다면 둘 중 어느 쪽이 더 큰 원인이었는지, 근거로 가려 보는 게 기자의 일이지.']]],
+['bg','B4'],
+['nar','1961년 5월 16일 새벽. 한강 다리 위로 군용 트럭이 줄지어 지나갔다.'],
+['hg:worried','이른 새벽, 문 너머에서 군홧발 소리가 들렸다.'],
+['end']]},
+{t:'군복을 벗은 권력',y:'1961~1967 · 5·16 군사 정변과 박정희 정부',door:0,s:[
+['bg','B4'],
+['nar','1961년 5월 16일 새벽, 육군 소장 박정희가 이끄는 군인들이 군사 정변을 일으켜 정부 주요 기관을 장악하였다. 장면 내각은 무너졌다.'],
+['nar','그들은 혁명 공약을 발표하여 헌정을 중단하고 군정을 실시하였다.'],
+['card','c7'],
+['bg','B3'],
+['nar','군사 정변 세력은 국가 재건 최고 회의를 설치하여 입법·사법·행정권을 장악하였다. 언론을 탄압하고 정치인의 활동을 통제했으며, 통일 운동에 앞장섰던 사람들을 체포하였다.'],
+['yun:angry','국가 안보를 명분으로 중앙정보부라는 게 생겼다. 이제 원고가 나가기 전에 누가 먼저 읽는다는 뜻이야.'],
+['hg:angry','4·19 이후 요구했던 개혁도, 통일 운동도… 모두 멈춰 버렸어요.'],
+['choice','총으로 잡은 권력은 어떻게 ‘정당한 권력’이 되려 할까?',['선거를 치러 이긴다','경제 성장을 이뤄 보인다','반공을 앞세워 반대를 누른다'],'세 가지가 모두 쓰였어. 그중에서도 가장 오래 기댄 근거는 ‘경제 개발’이었지.'],
+['nar','1962년, 헌법이 대통령 중심제로 개정되었다. 군사 정변 세력은 민주 공화당을 창당하였다.'],
+['card','c8'],
+['door',1,'5차 개헌 — 열렸던 문이 닫히기 시작했다'],
+['nar','박정희는 정치인에게 정권을 넘기고 군대로 복귀하겠다는 약속을 어기고, 민간인 신분으로 1963년 대통령 선거에 출마하였다.'],
+['card','c9'],
+['yun:thinking','군복을 벗었다고 총이 사라진 건 아니야. 다만 이제 표가 생겼지.'],
+['bg','B7'],
+['sun:smile','저는 정민이에요. 강원도 대관령에서 올라와 서울 봉제 공장에서 일해요.'],
+['sun:sad','고향에선 겨울마다 나무 스키를 타고 눈 언덕을 바람처럼 내려왔는데… 여기선 하루 종일 미싱 앞에만 앉아 있어요.'],
+['hg:thinking','정부는 경제 개발을 서둘렀다. 그런데 그 많은 돈은 어디서 났을까? 수첩에 질문 하나를 적었다. ‘경제 개발 자금은?’'],
+['bg','B5'],
+['nar','박정희 정부는 경제 개발 자금을 확보하기 위해 한일 국교 정상화에 나섰다. 소련과 중국에 맞설 안보 체제를 원한 미국도 한일 관계 개선을 강하게 요구하였다.'],
+['card','c10'],
+['nar','식민 지배에 대한 사죄와 배상이 빠진 채 회담이 진행되자, 이를 대일 굴욕 외교라 여긴 대학생과 고등학생이 대대적인 반대 시위를 벌였다. 시민들이 동조하면서 시위는 격렬해졌다.'],
+['card','c11'],
+['hg:sad','계엄군이 교문을 막았다. 1965년, 야당의 반대에도 민주 공화당 의원들만 참석한 가운데 한일 협정이 국회에서 비준되었다.'],
+['bg','B6'],
+['dong:worried','세마야, 우리 형이 베트남에 간대. 미국이 요청했다더라.'],
+['dong:sad','배웅하는 날, 내가 피리로 한 곡 불어 줬어. 형이 그 소리 잊지 않겠대.'],
+['nar','박정희 정부는 미국의 요청에 따라 베트남에 국군을 파병하였다. 1964년부터 1973년까지 32만여 명에 달했다. 미국은 그 대가로 기술과 차관 제공, 한국군 현대화 등을 약속하였다.'],
+['card','c12'],
+['nar','파병으로 한국 기업의 해외 진출과 수출이 활발해졌다. 그러나 수많은 장병이 희생되었고 고엽제 피해자도 생겼다. 한국인 혼혈인(라이따이한) 문제가 남았고, 일부 국군에 의해 베트남 민간인이 희생되기도 하였다.'],
+['hg:thinking','돈은 들어왔다. 그럼 그 대가는 누가 치렀을까?'],
+['mini','m2'],
+['nar','1967년, 박정희는 대통령 선거에서 다시 이겼다. 두 번째 임기였다.'],
+['article'],
+['end']]},
+{t:'한 번 더, 그리고 영원히',y:'1967~1972 · 3선 개헌과 유신 체제의 성립',door:1,s:[
+['bg','B3'],
+['nar','1967년, 재선에 성공한 박정희가 두 번째 임기를 시작했다. 당시 헌법은 대통령을 두 번까지만 할 수 있게 했다.'],
+['nar','같은 해 7월, 중앙정보부는 동베를린을 거점으로 활동했다는 예술인·교수·학생 등을 간첩 혐의로 연행했다. 신문 1면은 대규모 간첩 사건으로 장식되었다.'],
+['card','c39'],
+['yun:thinking','간첩이라고 발표는 크게 했는데, 재판에서 간첩 혐의는 입증되지 않았지. 그 사이 부정 선거 규탄 목소리는 조용해졌고.'],
+['choice','대통령은 두 번까지만 할 수 있다. 그런데 세 번째를 하고 싶다면?',['헌법을 고친다','후계자를 내세운다','깨끗이 물러난다'],'1969년, 선택된 길은 첫 번째였어.'],
+['nar','1968년 북한의 도발이 이어지며 남북 긴장이 높아졌다. 정부는 위기를 부각하며 반공 태세를 강화했고, 국가 안보와 지속적인 경제 성장을 명분으로 3선 개헌을 추진하였다.'],
+['nar','1969년, 야당 의원과 학생, 시민들의 개헌 반대 운동이 전국으로 번지는 가운데 여당은 야당 의원들을 따돌리고 국회 별관에서 편법으로 개헌안을 통과시켰다.'],
+['card','c13'],
+['door',2,'6차 개헌(3선 개헌) — 문이 거의 닫혔다'],
+['yun:angry','‘편법’이라고 쓰지 말라는 지시가 내려왔다. …그래도 사실은 사실이야.'],
+['nar','1971년 대통령 선거. 박정희는 야당 후보 김대중을 힘겹게 누르고 당선되었다.'],
+['card','c14'],
+['nar','바깥 세계도 바뀌고 있었다. 1969년 닉슨 독트린 발표 이후 냉전 체제가 완화되었다. 반공을 앞세운 정부에 불리한 흐름이었고, 경기 침체로 국민의 불만도 커졌다. 이런 가운데 1972년 7월 4일, 남북 공동 성명이 발표되었다.'],
+['card','c17'],
+['hg:surprised','남과 북이 통일 원칙에 합의했다고? 문이… 다시 열리는 건가?'],
+['bg','B10'],
+['nar','1972년 10월. 정부는 안보 위기와 평화 통일에 대비한다는 구실로 10월 유신을 단행했다. 전국에 비상계엄을 선포하고 국회를 해산하였다.'],
+['nar','비상 국무 회의에서 만든 유신 헌법은 국민 투표로 확정되었다.'],
+['card','c18'],
+['door',3,'7차 개헌(유신 헌법) — 문이 닫혔다. 틈으로 실낱같은 빛만 남았다'],
+['nar','1972년 12월 23일. 통일 주체 국민 회의 대의원들이 체육관에 모였다. 후보는 단 한 명이었다.'],
+['card','c37'],
+['yun:sad','민주 정치의 기본 원리를 무시한 권위주의적 독재 체제야. 이제 대통령은 국민이 직접 뽑지 않고, 몇 번이든 할 수 있다.'],
+['hg:determined','3차 개헌과 유신 헌법을 나란히 놓아 보자. 무엇이 바뀌었는지 조각을 맞춰야 한다.'],
+['mini','m3'],
+['article'],
+['end']]},
+{t:'닫힌 문의 균열',y:'1972~1979 · 유신 체제에 저항한 민주화 운동',door:3,s:[
+['bg','B3'],
+['choice','법으로 비판을 금지하면, 비판은 사라질까?',['사라진다','숨어서 더 커진다','모양을 바꿔 다시 나타난다'],'세마의 수첩을 따라가며 직접 확인해 보자.'],
+['nar','1973년, 일본에서 유신 체제를 비판하던 김대중이 중앙정보부에 의해 국내로 납치되었다. 이 사건을 계기로 유신 반대 운동이 활발해졌다.'],
+['card','c26'],
+['nar','언론계, 종교계, 노동계에서도 유신에 반대하는 목소리가 높아졌다. 그러자 1974년 정부는 긴급 조치를 발표하여 이를 억압하였다.'],
+['card','c19'],
+['door',4,'긴급 조치 — 닫힌 문에 자물쇠가 채워졌다'],
+['cen:neutral','원고를 내놓으시오. 실을 수 있는 문장과 없는 문장은 우리가 정하오.'],
+['hg:angry','…빨간 펜이 원고 위를 지나갔다.'],
+['mini','m4'],
+['nar','중앙정보부는 학생 운동 배후에 국가 전복을 노리는 인민 혁명당이 있다며 관련자들을 잡아들였다(제2차 인혁당 사건).'],
+['card','c20'],
+['yun:sad','나도 오늘부로 해직이다. 유신에 반대한 기자들이 줄줄이 쫓겨났어. 우리는 밖에서 언론 자유 수호 투쟁을 이어 갈 거다.'],
+['hg:sad','천주교 신부들도 정의 구현 사제단을 만들어 유신에 맞섰다. 선배의 빈자리를 보며 펜을 다시 쥐었다.'],
+['mi:worried','음악 시간에 부를 노래까지 검열을 받아요. 아이들에게 아무 말도 할 수 없어요. 그래도… 1976년 명동 성당에서 선언문이 나왔다는 얘기는 들었어요.'],
+['card','c38'],
+['bg','B3'],
+['nar','1978년 국회 의원 선거. 개표가 끝나자 편집국이 술렁였다.'],
+['card','c22'],
+['hg:surprised','야당 신민당의 득표율이 여당 민주 공화당을 앞질렀어…!'],
+['nar','국제 사회도 유신 독재와 인권 탄압을 비판했다. 제2차 석유 파동으로 경제 상황도 어려워졌다.'],
+['bg','B11'],
+['sun:determined','세마 씨, 저 YH 무역으로 옮겼었잖아요. 회사가 일방적으로 문을 닫는대요. 갈 데가 없어서 신민당사로 왔어요.'],
+['nar','1979년 8월, 경찰이 신민당사에서 농성하던 노동자들을 강경 진압하였다. 그 과정에서 여성 노동자 한 명이 사망하였다.'],
+['card','c23'],
+['nar','야당이 이 사건을 계기로 비판의 목소리를 높이자, 여당은 신민당 총재 김영삼을 국회 의원에서 제명하였다.'],
+['card','c24'],
+['bg','B12'],
+['nar','1979년 10월, 김영삼의 정치적 근거지인 부산과 마산(창원) 일대에서 격렬한 유신 반대 시위가 벌어졌다(부마 민주 항쟁).'],
+['card','c25'],
+['hg:determined','법으로 막았는데도, 사람들은 다시 거리에 섰다.'],
+['article'],
+['bg','B13'],
+['nar','시위 대응을 놓고 정권 내부에서 갈등이 빚어졌다. 1979년 10월 26일, 대통령 박정희가 중앙정보부장 김재규에게 피살되었다(10·26 사태). 유신 체제는 사실상 붕괴되었다.'],
+['door',5,'10·26 사태 — 닫힌 문에 금이 갔다'],
+['hg:thinking','문에 금이 갔다. 빛이 새어 들어온다. 그런데…'],
+['nar','문은 금이 갔다. 그러나 열린 것은 아니었다.'],
+['column','유신 체제를 무너뜨린 가장 큰 힘은 무엇이었을까?',[['학생과 시민의 저항 (부마 민주 항쟁)','거리의 힘이 컸지. 그런데 1978년 선거에서 야당이 득표율로 앞선 것처럼, 표로 드러난 국민의 뜻은 어떤 역할을 했을까?'],['야당과 국민의 표 (1978년 총선, 김영삼 제명 반발)','표의 힘을 봤구나. 다만 그 표가 거리의 항쟁으로 이어지지 않았다면 유신이 흔들렸을까?'],['정권 내부의 갈등 (10·26 사태)','직접적인 계기는 맞아. 그런데 정권 안에서 갈등이 터진 까닭은 무엇이었을까? 부마 민주 항쟁을 어떻게 막을지를 두고 다툰 것 아니었나?']]],
+['end']]},
+{t:'다시 열린 문',y:'1979~1987 · 5·18 민주화 운동과 6월 민주 항쟁',door:5,s:[
+['bg','B13'],
+['nar','10·26 사태로 비상계엄이 선포된 가운데, 국무총리 최규하가 통일 주체 국민 회의를 통해 대통령에 선출되었다. 국민은 유신의 억압에서 벗어나 민주주의가 오리라 기대했다.'],
+['nar','그러나 1979년 12월 12일, 전두환이 이끄는 일부 군인이 병력을 이끌고 반란을 일으켰다.'],
+['card','c27'],
+['bg','B14'],
+['nar','긴급 조치 9호가 해제되고 민주 인사들이 풀려났다. 대학가를 중심으로 계엄 철폐와 유신 헌법 개정을 요구하는 시위가 이어졌고, 1980년 5월 절정에 달했다(서울의 봄).'],
+['card','c28'],
+['hg:worried','그날 밤, 시위를 이끌던 지도부가 시위를 멈췄다. 신군부에게 정치에 개입할 빌미를 주지 않으려는 것이었다.'],
+['nar','5월 17일, 신군부는 비상계엄을 전국으로 확대하고 김대중을 비롯한 야권 정치인과 민주 인사, 학생 대표를 체포했다. 모든 정치 활동을 금지하고, 언론 검열을 강화하고, 대학에 휴교령을 내렸다.'],
+['door',4,'5·17 비상계엄 전국 확대 — 금 간 문에 다시 자물쇠가 채워졌다'],
+['bg','B15'],
+['nar','1980년 5월 18일 아침, 광주에 계엄군으로 투입된 공수 부대원들이 등교하는 대학생들을 구타하며 해산시켰다. 학생들은 계엄 철폐와 신군부 퇴진을 외쳤고, 시민들이 합류했다.'],
+['nar','계엄군은 무차별 폭력으로 진압하고, 시위대를 향해 발포하였다. 수많은 사상자가 발생했다. 일부 시민은 이에 항의하며 무기를 탈취해 시민군을 조직하였다.'],
+['card','c30'],
+['nar','계엄군은 시내에서 물러나 광주 외곽을 봉쇄했다. 고립된 광주에서 시민들은 시민군에게 주먹밥을 나누고, 부상자를 위해 줄지어 헌혈하며 스스로 질서를 지켰다. 시민 수습 대책 위원회는 평화 협상을 시도했다.'],
+['nar','5월 27일 새벽, 계엄군은 헬기와 탱크를 앞세우고 시내로 들어와 전남 도청에서 끝까지 항전하던 시민군을 무력으로 진압하였다.'],
+['bg','B3'],
+['hg:sad','서울 편집국에 들어온 보도문에는 ‘폭도’, ‘난동’이라는 말만 가득했다.'],
+['card','c29'],
+['hg:determined','우리 신문이 쓰지 못한 문장들을 따로 적어 두자. 언젠가 반드시 실을 수 있도록.'],
+['mini','m5'],
+['card','c31'],
+['nar','신군부는 국가 보위 비상 대책 위원회를 설치하고 입법·행정·사법부를 장악했다. 언론을 통폐합하고, 사회 정화를 구실로 많은 민간인을 삼청 교육대로 끌고 갔다. 전두환은 통일 주체 국민 회의를 통해 대통령이 되었다.'],
+['card','c36'],
+['nar','전두환 정부는 야간 통행금지 폐지, 중고생 두발·교복 자율화, 프로 야구 출범 같은 유화 정책을 폈다. 그러나 학생 운동과 노동 운동을 탄압하고 고문 수사도 서슴지 않았다.'],
+['card','c32'],
+['hg:angry','기사 제목, 용어, 분량까지 정해서 내려온다. 이건 신문이 아니라 받아쓰기야.'],
+['nar','권력형 비리가 잇따르며 국민의 손으로 대통령을 직접 뽑아야 한다는 생각이 퍼졌다. 야당과 민주화 운동 진영은 대통령 직선제 개헌 운동을 벌였다. 그러자 1987년 4월, 정부는 호헌 조치를 발표했다.'],
+['card','c33'],
+['nar','1987년 1월, 대학생 박종철이 경찰 수사 중 고문으로 숨졌다. 경찰은 “탁 하고 치니 억 하고 죽었다”고 발표했다. 은폐·조작이 드러나자 국민의 분노가 폭발했다.'],
+['card','c34'],
+['bg','B16'],
+['nar','민주 헌법 쟁취 국민운동 본부가 결성되어 직선제 개헌과 고문 살인 정권 퇴진 운동을 벌였다. 6월 9일, 대학생 이한열이 경찰이 쏜 최루탄에 맞아 쓰러졌다.'],
+['nar','6월 10일, 국민 대회와 함께 전국 각지에서 대규모 시위가 시작되었다. 명동 성당을 비롯해 시내 곳곳에서 매일 시위가 이어졌다.'],
+['mi:determined','이번엔 음악실에서 아이들과 마음껏 노래할 수 있는 날을 만들 거예요. 학생들에게 부끄럽지 않게.'],
+['dong:smile','세마야! 나 요즘 서울 체육관에서 배드민턴 가르치며 지내. 오늘은 라켓 대신 피리를 들고 나왔다. 풍물패랑 같이 행진할 거야!'],
+['sun:determined','공장 동료들도 다 나왔어요. 넥타이를 맨 회사원들까지요. “독재 타도! 호헌 철폐!”'],
+['mini','m6'],
+['nar','결국 전두환 정부는 국민적 저항에 굴복했다. 6월 29일, 직선제 개헌을 받아들이고 대대적인 민주화 조치를 취하겠다고 발표하였다.'],
+['card','c35'],
+['door',0,'6·29 선언 — 문이 다시 열렸다'],
+['hg:smile','스물한 살에 처음 본 그 문이, 마흔여덟이 되어서야 다시 열렸다.'],
+['hg:determined','역사 교사가 되겠다던 꿈은 이루지 못했다. 하지만 내 수첩은 언젠가 누군가의 교실에서 역사가 될 것이다.'],
+['yun:smile','(오랜만에 편집국에 들른 남궁 선배) 이번엔 받아 적기만 하지 마라. 열린 문은 지켜야 열려 있는 거다.'],
+['article'],
+['column','6월 민주 항쟁이 대통령 직선제를 이끌어 낼 수 있었던 가장 큰 힘은 무엇이었을까?',[['박종철·이한열 사건이 불러온 국민의 분노','분노가 사람들을 거리로 불러냈지. 그런데 분노만으로 정부가 물러섰을까? 그 분노를 하나로 모은 조직은 없었을까?'],['학생·노동자·회사원까지 함께한 폭넓은 참여','넥타이 부대까지 나섰다는 게 핵심이지. 그렇다면 1980년 5월의 광주는 왜 그렇게 고립될 수밖에 없었을까?'],['5·18 이후 쌓여 온 민주화 운동의 경험','긴 흐름을 봤구나. 광주의 기억이 6월로 이어졌지. 그렇다면 1987년에 그 경험을 거리로 불러낸 직접적인 계기는 무엇이었을까?']]],
+['ending']]}
+];
+
+const MINI={
+m1:{type:'sort',title:'쏟아진 요구, 분류하기',lead:'4·19 혁명 이후 쏟아진 요구입니다. 요구 카드를 하나 고른 뒤, 알맞은 상자를 누르세요.',
+ bins:[['p','부정 선거 책임자 처벌','3·15 부정 선거와 부정 축재의 책임을 묻는 요구'],['u','통일 운동','혁신 세력과 학생의 통일 요구'],['r','각계의 민주화 요구','일터와 학교의 민주화']],
+ items:[['3·15 부정 선거의 원흉과 발포 책임자를 처벌하라','p'],['부정 축재자를 처벌하라','p'],['가자 북으로! 오라 남으로!','u'],['남북 학생 회담을 판문점에서 열자','u'],['중립화 통일, 남북 협상','u'],['교원 노동조합을 인정하라','r'],['노동자·농민의 권리를 보장하라','r'],['학원 민주화','r']],
+ done:'장면 내각은 이 요구들을 제대로 수용하지 못하였어요. 부정 선거 책임자와 부정 축재자 처벌에 소극적이었고, 민간 차원의 통일 운동에는 부정적이었지요. 결국 5·16 군사 정변으로 개혁도 통일 운동도 중단되었어요.'},
+m3:{type:'sort',title:'⭐ 헌법 비교 퍼즐: 3차 vs 7차',lead:'권력 조각을 하나 고른 뒤, 그 조각이 들어 있는 헌법을 누르세요.',
+ bins:[['a','3차 개헌 (1960)','4·19 직후 — 권력을 나누다'],['b','7차 개헌 · 유신 헌법 (1972)','권력을 대통령 한 사람에게']],
+ items:[['내각 책임제 — 실권은 국무총리와 내각','a'],['양원제 (민의원·참의원)','a'],['국회에서 대통령을 뽑음','a'],['통일 주체 국민 회의에서 대통령을 뽑음','b'],['대통령 임기 6년, 중임 제한 없음','b'],['대통령의 국회 의원 3분의 1 추천권','b'],['대통령의 국회 해산권','b'],['대통령의 법관 임명권','b'],['국민의 기본권도 제한할 수 있는 긴급 조치권','b']],
+ done:'두 헌법 모두 대통령을 국민이 직접 뽑지 않았어요. 그런데 3차는 대통령의 권한을 줄이려고, 7차는 대통령을 국민의 손에서 떼어 놓으려고 간선제를 썼다는 점이 정반대예요. 유신 헌법은 삼권 분립을 사실상 무력화했어요.',
+ table:[['대통령 선출','국회 (간선)','통일 주체 국민 회의 (간선)'],['대통령 임기','5년, 1회 중임','6년, 중임 제한 없음'],['정부 형태','내각 책임제','대통령에게 권력 집중'],['국회','양원제','국회 의원 3분의 1 대통령 추천 · 대통령이 해산 가능'],['사법부','—','대통령의 법관 임명권'],['비상 권한','대통령은 실권 없음','긴급 조치권']]},
+m4:{type:'sort',title:'검열관의 빨간 펜',lead:'1974년, 세마의 원고에서 지워진 문장입니다. 문장을 고른 뒤, 그 문장을 금지한 긴급 조치 1호의 내용을 누르세요.',red:true,
+ bins:[['A','헌법을 부정·비방하는 행위 금지','긴급 조치 1호'],['B','헌법 개정·폐지를 요구하는 행위 금지','긴급 조치 1호'],['D','이 조치를 비방하는 행위 금지 — 영장 없이 체포','긴급 조치 1호']],
+ items:[['장준하 등은 헌법을 고치자는 100만 인 서명 운동을 시작하였다.','B'],['학생들은 유신 헌법 철폐를 요구하는 시위를 계속하였다.','B'],['유신 헌법은 삼권 분립을 사실상 무력화하였다.','A'],['긴급 조치는 언론과 시민의 입을 막는 도구가 되었다.','D']],
+ done:'긴급 조치는 사실을 전하는 문장까지 지웠어요. 그러나 반유신 민주화 운동은 계속되었고, 1976년에는 3·1 민주 구국 선언이 발표되었지요.'},
+m5:{type:'sort',title:'쓰지 못한 문장들',lead:'1980년 5월, 검열을 거친 보도와 실제로 일어난 일을 구별해 보세요. 카드를 고른 뒤 상자를 누르세요.',
+ bins:[['f','1980년 5월의 보도','검열과 통제를 거친 말'],['t','실제로 일어난 일','기록과 증언이 전하는 사실']],
+ items:[['광주 시민은 폭도','f'],['불순 세력과 간첩의 선동에 의한 난동','f'],['공수 부대원들이 등교하는 대학생들을 구타하며 해산시켰다','t'],['계엄군이 시위대를 향해 발포하였다','t'],['시민들은 주먹밥을 나누고 헌혈하며 스스로 질서를 지켰다','t'],['시민 수습 대책 위원회가 평화 협상을 시도하였다','t']],
+ done:'5·18 민주화 운동은 신군부의 불법적 정권 탈취와 국가 폭력에 맞선 민주화 운동이었어요. 1997년 대법원은 광주 시민의 시위가 헌법 질서를 지키기 위한 정당한 행위였다고 밝혔고, 2011년 관련 기록물은 유네스코 세계 기록 유산이 되었어요.'},
+m6:{type:'order',title:'1987년, 순서대로 놓기',lead:'6월 민주 항쟁으로 가는 길입니다. 일어난 순서대로 카드를 누르세요.',
+ items:['박종철 고문치사 사건 (1월)','4·13 호헌 조치 (4월)','민주 헌법 쟁취 국민운동 본부 결성 (5월)','이한열, 최루탄에 맞아 쓰러짐 (6월 9일)','6·10 국민 대회','6·29 선언'],
+ done:'6월 민주 항쟁은 군사 독재를 끝내고 평화적 정권 교체의 길을 열었어요. 높아진 시민 의식은 우리 사회가 성숙한 시민 사회로 성장하는 주춧돌이 되었지요.'},
+m2:{type:'multi',title:'경제 개발 자금, 그리고 그 대가',lead:'카드마다 해당하는 정책을 모두 골라 ✔ 하세요. 두 정책 모두에 해당하는 카드도 있고, 어느 쪽에도 해당하지 않는 함정 카드도 있어요.',
+ cols:['한일 협정 (1965)','베트남 파병 (1964~1973)'],
+ groups:[['얻은 것',[['경제 개발에 필요한 자금 마련',[0,1]],['미국의 기술·차관 제공',[1]],['한국군 현대화 지원',[1]],['한국 기업의 해외 진출과 수출 확대',[1]],['일본의 공식 사죄와 배상금',[]],['약탈 문화유산의 반환',[]]]],
+  ['그 대가',[['식민 지배에 대한 사죄와 배상을 받아내지 못함',[0]],['대일 굴욕 외교 반대 시위(6·3 시위)와 비상계엄',[0]],['수많은 국군 장병의 희생',[1]],['고엽제 피해',[1]],['라이따이한 문제와 베트남 민간인 희생',[1]],['주한 미군 전면 철수',[]]]]],
+ done:'한일 협정과 베트남 파병 모두 경제 개발 자금을 마련하는 길이었어요. 하지만 그 대가는 시위에 나선 학생과 시민, 전쟁에 나간 장병처럼 저마다 다른 사람들이 치렀어요.'}
+};
+
+const ART=[
+{h:[['내각 책임제·양원제 장면 내각 출범… 쏟아지는 민주화 요구는 제대로 수용 못 해',1,''],['장면 내각, 경제 개발 5개년 계획 성공적으로 완수',0,'계획은 세웠지만 5·16 군사 정변으로 정부가 무너져 실현되지 못했어요.'],['장면 내각, 남북 학생 회담 적극 지원… 통일 운동 앞장서',0,'장면 내각은 민간 차원의 통일 운동에 부정적이었어요.']],rel:['c1','c2','c3','c4','c5','c6']},
+{h:[['한일 협정·베트남 파병으로 개발 자금 마련… 굴욕 외교 반대 시위도 거세',1,''],['한일 협정 체결, 일본 식민 지배 공식 사죄하고 배상금 지급',0,'한일 협정에는 식민 지배에 대한 사죄와 배상이 담기지 않아 ‘대일 굴욕 외교’ 비판을 받았어요.'],['5·16 세력, 약속대로 정권 이양하고 군으로 복귀',0,'박정희는 약속을 어기고 민간인 신분으로 대통령 선거에 나와 당선되었어요.']],rel:['c7','c8','c9','c10','c11','c12']},
+{h:[['비상계엄 속 유신 헌법 확정… 통일 주체 국민 회의서 대통령 선출, 중임 제한 없어',1,''],['7·4 남북 공동 성명 뒤 남북 총선거로 통일 정부 세우기로 합의',0,'7·4 남북 공동 성명 이후 남한에서는 오히려 유신 체제가 들어섰어요.'],['새 헌법, 국회 권한 크게 강화… 삼권 분립 확립',0,'유신 헌법은 대통령에게 국회 의원 3분의 1 추천권·국회 해산권·법관 임명권을 주어 삼권 분립을 무력화했어요.']],rel:['c13','c14','c17','c18','c37','c39']},
+{h:[['YH 무역 사건·김영삼 제명 뒤 부마 민주 항쟁… 유신 체제 흔들려',1,''],['긴급 조치 덕분에 유신 반대 목소리 완전히 사라져',0,'개헌 청원 서명, 3·1 민주 구국 선언, 부마 민주 항쟁처럼 저항은 계속되었어요.'],['1978년 총선, 여당 민주 공화당 득표율에서 압도적 승리',0,'득표율은 오히려 야당 신민당이 여당을 앞질렀어요.']],rel:['c19','c20','c22','c23','c24','c25','c26','c38']},
+{h:[['‘호헌 철폐, 독재 타도’ 6월 민주 항쟁… 6·29 선언으로 대통령 직선제 개헌 수용',1,''],['광주 사태, 불순 세력과 간첩 선동에 의한 난동으로 밝혀져',0,'1980년 당시 통제된 보도의 표현이에요. 1997년 대법원은 광주 시민의 시위가 헌법 질서를 지키기 위한 정당한 행위였다고 밝혔어요.'],['4·13 호헌 조치로 대통령 직선제 개헌 확정',0,'4·13 호헌 조치는 직선제 개헌 논의 자체를 금지한 조치였어요.']],rel:['c33','c34','c35','c32','c36','c29','c31']}
+];
+
+/* ============ 설정 (선생님이 고치는 곳) ============ */
+const CONFIG={
+ // 구글 Apps Script 웹 앱 주소. 비어 있으면 '내 기록 복사'로만 제출합니다.
+ submitUrl:'https://script.google.com/macros/s/AKfycbwlEruKjkX7wwD9KousqZ7myvznHC3F-NpswEjSaHqIZ3Uis4kmqfsFnTAZ4J-KCJHa_g/exec',
+ // 교사 모드 비밀번호: 표지의 '닫히는 문' 제목을 빠르게 5번 누르면 입력 창이 열립니다.
+ teacherPin:'0419',
+ lessons:[
+  {n:1,r:[0,1],t:'4·19 혁명 이후 ~ 박정희 정부 초기',q:'4·19 혁명으로 활짝 열린 문은 왜 1년 만에 다시 닫히기 시작했을까? 사료 카드 2장을 근거로 나의 생각을 써 보자.'},
+  {n:2,r:[2,3],t:'3선 개헌 ~ 유신 체제 ~ 10·26',q:'법으로 비판을 금지하면, 비판은 사라질까? 유신 체제 시기의 사료 카드 2장을 근거로 나의 생각을 써 보자.'},
+  {n:3,r:[4,4],t:'12·12 사태 ~ 5·18 ~ 6월 민주 항쟁',q:'4·19 혁명부터 6월 민주 항쟁까지, 닫힌 문을 다시 연 힘은 무엇이었을까? 그리고 그 문을 지키기 위해 오늘의 시민에게 필요한 것은 무엇일까? 사료 카드 2장을 근거로 써 보자.'}
+ ]
+};
+
+/* ============ 상태 ============ */
+const S={ch:0,i:0,door:0,cards:[],scores:{},log:[],miss:0,artTry:{},sid:'',name:'',lesson:0,range:[0,1],bg:'B1'};
+let TEACHER=false;
+const $=q=>document.querySelector(q);
+const main=$('#main'),ov=$('#ov'),ovBox=$('#ovBox');
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const shuf=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+function save(){LS.set('door1960',S)}
+function load(){return LS.get('door1960',null)}
+function doneMap(){return LS.get('door1960_done',{})}
+function markDone(n){const d=doneMap();(d[S.sid]=d[S.sid]||{})[n]=true;LS.set('door1960_done',d)}
+const avgScore=()=>{const v=Object.values(S.scores);return v.length?Math.round(v.reduce((a,b)=>a+b,0)/v.length):0};
+function rangeCards(r){const out=[];for(let c=r[0];c<=r[1];c++)CH[c].s.forEach(x=>{if(x[0]==='card'&&!out.includes(x[1]))out.push(x[1])});return out}
+function logSet(e){const i=S.log.findIndex(x=>x.ch===e.ch&&x.type===e.type&&x.q===e.q);if(i>=0)S.log[i]=e;else S.log.push(e);save()}
+
+function pic(src,fb,cls=''){
+ return `<span class="pic ${cls}"><img src="${src}" alt="" onerror="this.parentNode.classList.add('nf');this.remove()"><span class="fb">${fb}</span></span>`;
+}
+function doorSVG(st){
+ const g=[1,.55,.25,0,0,0][st];const w=56*(1-g*.85);
+ const leaf=(x,flip)=>`<g><rect x="${x}" y="16" width="${w}" height="158" fill="#7a4b2a" stroke="#2a1a0e" stroke-width="2"/>
+ <rect x="${x+w*.14}" y="28" width="${w*.72}" height="60" fill="none" stroke="#4a2c16" stroke-width="2"/>
+ <rect x="${x+w*.14}" y="100" width="${w*.72}" height="62" fill="none" stroke="#4a2c16" stroke-width="2"/>
+ <circle cx="${flip?x+w*.12:x+w*.88}" cy="96" r="2.6" fill="#d9b25c"/></g>`;
+ const lit=g>0||st==5;
+ let extra='';
+ if(st==4) extra+=`<rect x="61" y="96" width="18" height="16" rx="2" fill="#3b3b3b" stroke="#111"/><path d="M64 96v-6a6 6 0 0 1 12 0v6" fill="none" stroke="#3b3b3b" stroke-width="3"/>`;
+ if(st==3) extra+=`<rect x="69" y="16" width="2" height="158" fill="#ffe7a1"/>`;
+ if(st==5) extra+=`<path d="M70 16 L66 50 L74 80 L64 112 L73 140 L68 174" fill="none" stroke="#ffe7a1" stroke-width="4"/><path d="M70 16 L66 50 L74 80 L64 112 L73 140 L68 174" fill="none" stroke="#fff6d6" stroke-width="1.5"/>`;
+ return `<svg viewBox="0 0 140 182" width="100%" height="100%" role="img" aria-label="문 상태: ${DOORLBL[st]}">
+ <defs><radialGradient id="lg${st}"><stop offset="0" stop-color="#fff6cf"/><stop offset="1" stop-color="#e6b85a"/></radialGradient></defs>
+ <rect x="4" y="6" width="132" height="174" fill="#3b2414"/>
+ <rect x="14" y="16" width="112" height="158" fill="${lit&&st<5?`url(#lg${st})`:'#1b130c'}"/>
+ ${leaf(14,false)}${leaf(126-w,true)}${extra}</svg>`;
+}
+function doorPic(st){return pic(`assets/ui/door_${st}.webp`,doorSVG(st),'contain')}
+
+function hud(){
+ $('#hud').classList.remove('hidden');
+ $('#doorMini').innerHTML=doorSVG(S.door);
+ $('#doorMini').title='문: '+DOORLBL[S.door];
+ $('#chT').textContent=`${S.lesson?S.lesson+'차시 · ':''}챕터 ${S.ch+1}. ${CH[S.ch].t}`;
+ $('#chY').textContent=CH[S.ch].y+' · 문: '+DOORLBL[S.door]+(S.sid?` · ${S.sid} ${S.name}`:'');
+ $('#stCred').textContent='신뢰도 '+(Object.keys(S.scores).length?avgScore():'—');
+ $('#stCard').textContent=`사료 ${S.cards.length}/${rangeCards(S.range).length}`;
+ $('#bSkip').classList.toggle('hidden',!TEACHER);
+}
+function cardHTML(id,tag='div',extra=''){
+ const [ty,t,x,src]=CARDS[id];
+ return `<${tag} class="card" data-id="${id}" ${extra}><span class="ty ${ty}">${ty}</span><b>${esc(t)}</b>${esc(x)}<span class="src">출처: ${esc(src)}</span></${tag}>`;
+}
+function openOv(html,wide){ovBox.className='box'+(wide?' wide':'');ovBox.innerHTML=html;ov.classList.add('on');const b=ovBox.querySelector('input,button');b&&b.focus()}
+function closeOv(){ov.classList.remove('on')}
+
+/* ============ 진행 ============ */
+function step(){return CH[S.ch].s[S.i]}
+function next(){S.i++;save();run()}
+function run(){
+ hud();
+ const st=step();if(!st)return;
+ const k=st[0];
+ if(k==='bg'){S.bg=st[1];S.i++;return run()}
+ if(k==='card'){if(!S.cards.includes(st[1]))S.cards.push(st[1]);hud();renderStory(null);
+  openOv(`<p class="h" style="font-size:22px;margin:0">🗂️ 사료 카드를 얻었다</p><div class="toastcard">${cardHTML(st[1])}</div><button class="btn pri" id="ovN">수첩에 붙이기</button>`);
+  $('#ovN').onclick=()=>{closeOv();next()};return}
+ if(k==='door'){const old=S.door;S.door=st[1];
+  openOv(`<p class="h" style="font-size:24px;margin:0">${esc(st[2])}</p><div class="bigdoor" id="bd">${doorPic(old)}</div><button class="btn pri" id="ovN">계속</button>`);
+  setTimeout(()=>{const bd=$('#bd');if(bd){bd.innerHTML=doorPic(S.door);bd.classList.add('slam')}hud()},700);
+  $('#ovN').onclick=()=>{closeOv();next()};return}
+ if(k==='mini'){return renderMini(st[1])}
+ if(k==='article'){return renderArticle()}
+ if(k==='column'){return renderColumn(st)}
+ if(k==='end'){return renderEnd()}
+ if(k==='ending'){return renderEnding()}
+ renderStory(st);
+}
+function renderStory(st){
+ if(!$('#stage')){
+  main.innerHTML=`<div id="stage"><div class="bg" id="bgL"></div><div id="portrait"></div></div><div id="dlg"><span class="name hidden" id="nm"></span><div class="txt" id="tx"></div><div id="dx"></div><div class="row" id="drow"></div></div>`;
+ }
+ const b=BG[S.bg];
+ const bgL=$('#bgL');
+ if(bgL.dataset.id!==S.bg){bgL.dataset.id=S.bg;bgL.innerHTML=pic(`assets/bg/${S.bg}.webp`,`<span style="position:absolute;inset:0;background:${b.g}"></span><span style="position:relative">${b.e}</span>`)+`<span class="cap">${b.n}</span>`}
+ if(!st)return;
+ const k=st[0],tx=$('#tx'),nm=$('#nm'),pt=$('#portrait'),dx=$('#dx'),row=$('#drow');
+ dx.innerHTML='';row.innerHTML='';
+ if(k==='nar'){nm.classList.add('hidden');pt.style.opacity=0;tx.className='txt nar';tx.textContent=st[1];addNext();return}
+ if(k==='choice'||k==='opinion'){
+  nm.classList.remove('hidden');nm.textContent=k==='choice'?'생각해 보기':'토론';nm.style.setProperty('--c','#56633a');pt.style.opacity=0;
+  tx.className='txt';tx.textContent=st[1];
+  const prev=S.log.find(x=>x.ch===S.ch&&x.q===st[1]);
+  dx.innerHTML=`<div class="opts">${st[2].map((o,i)=>`<button class="opt ${prev&&prev.a===o?'sel':''}" data-i="${i}">${esc(o)}</button>`).join('')}</div>`;
+  dx.querySelectorAll('.opt').forEach(btn=>btn.onclick=()=>{
+   dx.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));btn.classList.add('sel');
+   const a=st[2][btn.dataset.i];
+   logSet({ch:S.ch,type:k==='choice'?'생각해 보기':'토론',q:st[1],a});
+   let r=dx.querySelector('.reply');if(!r){r=document.createElement('div');r.className='reply';dx.appendChild(r)}
+   r.textContent=k==='choice'?st[3]:'선택: '+a+' — 왜 그렇게 생각하는지 짝과 이야기해 보세요. 이 선택은 차시 마무리 기록에 함께 남습니다.';
+   if(!row.innerHTML)addNext();
+  });
+  if(prev)addNext();
+  return}
+ const [who,face]=k.split(':');const c=CHAR[who];
+ nm.classList.remove('hidden');nm.textContent=c.n;nm.style.setProperty('--c',c.c);
+ pt.style.opacity=1;
+ pt.innerHTML=pic(`assets/char/${c.k}_${face}.webp`,`<span class="fbp" style="--c:${c.c};display:flex"><span class="f">${who==='cen'?'👤':FACE[face]}</span><span class="acc">${c.a}</span></span>`,'contain');
+ tx.className='txt';tx.textContent=st[1];addNext();
+}
+function addNext(){const row=$('#drow');row.innerHTML=`<button class="btn pri" id="bNext">다음 ▶</button>`;$('#bNext').onclick=next;$('#bNext').focus({preventScroll:true})}
+function miss(){S.miss++}
+
+/* ============ 미니게임 ============ */
+function renderMini(id){
+ const m=MINI[id];
+ if(m.type==='multi')return renderMulti(m);
+ if(m.type==='order')return renderOrder(m);
+ let pool=shuf(m.items.map((x,i)=>({t:x[0],a:x[1],i}))),sel=null,placed={};
+ const draw=()=>{
+  main.innerHTML=`<div id="panel"><h2>${m.title}</h2><p class="lead">${m.lead}</p>
+  <div class="chips">${pool.map(p=>`<button class="chip ${m.red?'redline':''} ${sel===p.i?'sel':''}" data-i="${p.i}">${esc(p.t)}${TEACHER?`<span class="ans">→${esc(m.bins.find(b=>b[0]===p.a)[1].slice(0,8))}</span>`:''}</button>`).join('')||'<span class="note">모든 조각을 옮겼어요.</span>'}</div>
+  <div class="bins">${m.bins.map(b=>`<button class="bin" data-b="${b[0]}"><b>${esc(b[1])}</b><small>${esc(b[2])}</small>${(placed[b[0]]||[]).map(t=>`<span class="in">${esc(t)}</span>`).join('')}</button>`).join('')}</div>
+  <p class="msg" id="msg"></p>
+  ${pool.length?'':`<div class="reply">${m.done}</div>${m.table?`<table class="cmp"><tr><th>항목</th><th>3차 개헌 (1960)</th><th>7차 개헌 (1972)</th></tr>${m.table.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</table>`:''}<div class="row" style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn pri" id="mN">다음 ▶</button></div>`}
+  </div>`;
+  main.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{sel=+c.dataset.i;draw()});
+  main.querySelectorAll('.bin').forEach(b=>b.onclick=()=>{
+   if(sel===null){$('#msg').className='msg no';$('#msg').textContent='먼저 위에서 카드를 하나 고르세요.';return}
+   const p=pool.find(x=>x.i===sel);
+   if(p.a===b.dataset.b){(placed[p.a]=placed[p.a]||[]).push(p.t);pool=pool.filter(x=>x!==p);sel=null;draw();$('#msg').className='msg ok';$('#msg').textContent=pool.length?'맞아요!':'모두 정리했어요!'}
+   else{miss();const el=main.querySelector(`.chip[data-i="${sel}"]`);el.classList.remove('shake');void el.offsetWidth;el.classList.add('shake');$('#msg').className='msg no';$('#msg').textContent='다시 생각해 보세요. 카드의 내용이 누구의, 무엇에 관한 것인지 살펴보세요.'}
+  });
+  const mN=$('#mN');if(mN){mN.onclick=next;mN.focus()}
+ };
+ draw();
+}
+function renderOrder(m){
+ const pool=shuf(m.items.map((t,i)=>({t,i})));let got=[];
+ const draw=()=>{
+  main.innerHTML=`<div id="panel"><h2>${m.title}</h2><p class="lead">${m.lead}</p>
+  <div class="chips">${pool.filter(p=>!got.includes(p.i)).map(p=>`<button class="chip" data-i="${p.i}">${esc(p.t)}${TEACHER?`<span class="ans">${p.i+1}번째</span>`:''}</button>`).join('')||'<span class="note">모두 순서대로 놓았어요.</span>'}</div>
+  <ol class="bins" style="display:grid;grid-template-columns:1fr;gap:6px;padding-left:1.4em">${got.map(i=>`<li class="in" style="padding:6px 10px;background:var(--paper2);border-left:4px solid var(--olive)">${esc(m.items[i])}</li>`).join('')}</ol>
+  <p class="msg" id="msg"></p>
+  ${got.length===m.items.length?`<div class="reply">${m.done}</div><div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn pri" id="mN">다음 ▶</button></div>`:''}</div>`;
+  main.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{
+   const i=+c.dataset.i;
+   if(i===got.length){got.push(i);draw();$('#msg').className='msg ok';$('#msg').textContent=got.length===m.items.length?'모두 맞았어요!':'맞아요! 다음은?'}
+   else{miss();c.classList.remove('shake');void c.offsetWidth;c.classList.add('shake');$('#msg').className='msg no';$('#msg').textContent='그보다 먼저 일어난 일이 있어요.'}
+  });
+  const mN=$('#mN');if(mN){mN.onclick=next;mN.focus()}
+ };
+ draw();
+}
+/* 여러 정책에 해당할 수 있는 카드 분류 (한일 협정 / 베트남 파병 / 둘 다 / 둘 다 아님) */
+function renderMulti(m){
+ const items=[];m.groups.forEach(([g,list])=>shuf(list).forEach(([t,ans])=>items.push({g,t,ans,pick:[]})));
+ let checked=false;
+ const same=(a,b)=>a.length===b.length&&a.every(x=>b.includes(x));
+ const draw=()=>{
+  let lastG='';
+  main.innerHTML=`<div id="panel"><h2>${m.title}</h2><p class="lead">${m.lead}</p>
+  <div class="mtab"><div class="mhead"><span></span>${m.cols.map(c=>`<b>${esc(c)}</b>`).join('')}</div>
+  ${items.map((it,i)=>{const gh=it.g!==lastG?`<div class="mgroup">${esc(it.g)}</div>`:'';lastG=it.g;
+   const ok=same(it.pick,it.ans);
+   return gh+`<div class="mrow ${checked?(ok?'ok':'no'):''}"><span>${checked?(ok?'○ ':'× '):''}${esc(it.t)}${TEACHER?`<span class="ans">★ ${it.ans.length?it.ans.map(a=>m.cols[a].split(' ')[0]).join('·'):'해당 없음'}</span>`:''}</span>
+   ${m.cols.map((c,j)=>`<button class="tog ${it.pick.includes(j)?'on':''}" data-i="${i}" data-j="${j}" aria-pressed="${it.pick.includes(j)}">${it.pick.includes(j)?'✔':''}<span class="sr">${esc(c)}</span></button>`).join('')}</div>`}).join('')}
+  </div>
+  <p class="note">아무 정책에도 해당하지 않는 카드는 비워 두세요.</p>
+  <p class="msg" id="msg"></p><div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button class="btn" id="mC">확인하기</button><button class="btn pri hidden" id="mN">다음 ▶</button></div></div>`;
+  main.querySelectorAll('.tog').forEach(b=>b.onclick=()=>{const it=items[+b.dataset.i],j=+b.dataset.j;it.pick=it.pick.includes(j)?it.pick.filter(x=>x!==j):it.pick.concat(j);checked=false;draw()});
+  $('#mC').onclick=()=>{
+   checked=true;const ok=items.filter(it=>same(it.pick,it.ans)).length;draw();
+   const msg=$('#msg');
+   if(ok===items.length){msg.className='msg ok';msg.innerHTML='모두 맞았어요!<div class="reply" style="font-weight:400">'+m.done+'</div>';$('#mN').classList.remove('hidden');$('#mN').onclick=next;$('#mN').focus()}
+   else{miss();msg.className='msg no';msg.textContent=`${items.length}장 중 ${ok}장이 맞았어요. × 표시된 카드를 다시 살펴보세요. 두 정책에 모두 해당하는 카드도 있어요.`}
+  };
+ };
+ draw();
+}
+
+/* ============ 기사 쓰기 ============ */
+function deskReply(ok,good,bad){
+ const badT=bad.map(c=>`‘${CARDS[c][1]}’`).join(', ');
+ if(ok&&good===2) return {h:'1면 게재!',t:'사실도 맞고 근거도 탄탄하다. 이 정도면 1면에 실어도 되겠어.'};
+ if(ok&&good===1) return {h:'사회면 게재 — 근거 하나 보완 필요',t:`헤드라인은 정확해. 그런데 ${badT} 카드는 이 기사를 받쳐 주지 못해. 근거 하나만 바꾸면 1면이다.`};
+ if(ok) return {h:'보류 — 근거를 다시 찾아 와',t:`제목은 맞았는데, 고른 근거 두 장이 모두 이 기사와 맞지 않아. 근거 없는 기사는 독자가 믿지 않는다.`};
+ if(good===2) return {h:'데스크에서 반려 — 제목이 사실과 달라',t:'근거는 잘 골랐는데, 그 사료를 읽고 어떻게 이런 제목이 나오지? 사료를 다시 읽고 제목을 고쳐 와.'};
+ if(good===1) return {h:'데스크에서 반려',t:`제목이 사실과 다르고, ${badT} 카드도 이 기사의 근거가 되지 못해. 처음부터 다시 확인하자.`};
+ return {h:'데스크에서 반려',t:'제목도 사실과 다르고 근거도 맞지 않아. 취재 수첩부터 다시 펼쳐 봐.'};
+}
+function renderArticle(){
+ const a=ART[S.ch];const heads=shuf(a.h.map((h,i)=>({t:h[0],ok:h[1],why:h[2],i})));
+ let hs=null,cs=[];
+ const draw=()=>{
+  main.innerHTML=`<div id="panel"><h2>📰 기사 쓰기 — 챕터 ${S.ch+1}</h2>
+  <p class="lead">${CHAR.yun.n}: “헤드라인 하나, 근거 카드 두 장. 사실에 맞지 않으면 1면에 못 싣는다.”</p>
+  <p class="h" style="font-size:19px;margin:0 0 6px">① 사실에 맞는 헤드라인을 고르세요</p>
+  <div class="heads">${heads.map(h=>`<button class="head ${hs===h.i?'sel':''}" data-i="${h.i}">${esc(h.t)}${TEACHER&&h.ok?' <span class="ans">★ 정답</span>':''}</button>`).join('')}</div>
+  <p class="h" style="font-size:19px;margin:18px 0 6px">② 근거가 될 사료 카드 2장을 고르세요 (${cs.length}/2)</p>
+  <div class="cardgrid">${S.cards.map(id=>cardHTML(id,'button',`aria-pressed="${cs.includes(id)}"`).replace('class="card"',`class="card ${cs.includes(id)?'sel':''}"`)).join('')}</div>
+  ${TEACHER?`<p class="ans">★ 근거로 인정되는 카드: ${a.rel.map(r=>CARDS[r][1]).join(' / ')}</p>`:''}
+  <div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn pri" id="aS" ${hs!==null&&cs.length===2?'':'disabled'}>송고하기</button></div></div>`;
+  main.querySelectorAll('.head').forEach(b=>b.onclick=()=>{hs=+b.dataset.i;draw()});
+  main.querySelectorAll('button.card').forEach(b=>b.onclick=()=>{const id=b.dataset.id;if(cs.includes(id))cs=cs.filter(x=>x!==id);else if(cs.length<2)cs.push(id);draw()});
+  $('#aS').onclick=()=>result();
+ };
+ const result=()=>{
+  const h=heads.find(x=>x.i===hs);const good=cs.filter(c=>a.rel.includes(c)),bad=cs.filter(c=>!a.rel.includes(c));
+  const sc=(h.ok?50:0)+good.length*25;S.scores[S.ch]=sc;S.artTry[S.ch]=(S.artTry[S.ch]||0)+1;
+  logSet({ch:S.ch,type:'기사',q:'기사 쓰기',a:`${h.ok?'○':'×'} ${h.t} / 근거: ${cs.map(c=>CARDS[c][1]+(a.rel.includes(c)?'(○)':'(×)')).join(', ')} / ${sc}점 (${S.artTry[S.ch]}번째 송고)`});
+  hud();
+  const d=deskReply(h.ok,good.length,bad);
+  main.innerHTML=`<div id="panel"><h2>${d.h}</h2>
+  <div class="result"><div><b>${sc}</b>기사 신뢰도</div><div><b>${h.ok?'○':'×'}</b>헤드라인</div><div><b>${good.length}/2</b>알맞은 근거</div></div>
+  <div class="desk"><b>${CHAR.yun.n}</b> “${esc(d.t)}”</div>
+  <p class="h" style="font-size:18px;margin:16px 0 6px">내가 고른 근거</p>
+  <div class="cardgrid">${cs.map(c=>cardHTML(c).replace('class="card"',`class="card ${a.rel.includes(c)?'cok':'cno'}"`)).join('')}</div>
+  <p class="h" style="font-size:18px;margin:16px 0 6px">헤드라인 정답과 해설</p>
+  <div class="heads">${a.h.map(x=>`<div class="head ${x[1]?'good':'bad'}">${x[1]?'○':'×'} ${esc(x[0])}${x[2]?`<div class="why">${esc(x[2])}</div>`:''}</div>`).join('')}</div>
+  ${good.length<2?`<div class="reply">이 기사의 근거로 쓸 수 있는 카드: ${a.rel.map(r=>esc(CARDS[r][1])).join(' / ')}</div>`:''}
+  <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:14px"><button class="btn" id="aR">다시 쓰기</button><button class="btn pri" id="aN">다음 ▶</button></div></div>`;
+  $('#aR').onclick=()=>{hs=null;cs=[];draw()};$('#aN').onclick=next;$('#aN').focus();
+ };
+ draw();
+}
+
+/* ============ 취재 수첩: 나의 평가 ============ */
+function renderColumn(st){
+ const prev=S.log.find(x=>x.ch===S.ch&&x.type==='평가');
+ let pick=null,card=null;
+ const draw=()=>{
+  main.innerHTML=`<div id="panel"><h2>📓 세마의 취재 수첩 — 나의 평가</h2>
+  <p class="lead">${CHAR.yun.n}: “기사는 사실을 쓰지만, 칼럼은 판단을 쓴다. 네 판단을 한 줄로 남겨 봐. 근거 하나는 꼭 붙이고.”</p>
+  <p class="qbox">${esc(st[1])}</p>
+  <p class="h" style="font-size:19px;margin:0 0 6px">① 나의 입장</p>
+  <div class="opts">${st[2].map((o,i)=>`<button class="opt ${pick===i?'sel':''}" data-i="${i}">${esc(o[0])}</button>`).join('')}</div>
+  <p class="h" style="font-size:19px;margin:16px 0 6px">② 내 판단을 뒷받침하는 사료 카드 1장</p>
+  <div class="cardgrid">${S.cards.map(id=>cardHTML(id,'button').replace('class="card"',`class="card ${card===id?'sel':''}"`)).join('')}</div>
+  <p class="h" style="font-size:19px;margin:16px 0 6px">③ 한 문장으로 쓰기</p>
+  <textarea id="colW" style="min-height:80px" placeholder="예) ○○ 카드를 보면 장면 내각은 … 했기 때문에 …(이)라고 생각한다."></textarea>
+  <p class="note"><span id="colC">0</span>자 · 이 문장은 ${S.lesson||''}차시 마무리 기록에 함께 남습니다.</p>
+  <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn pri" id="colS" disabled>수첩에 적기</button></div></div>`;
+  const w=$('#colW');w.value=w.dataset.v||'';
+  const chk=()=>{$('#colC').textContent=w.value.trim().length;$('#colS').disabled=!(pick!==null&&card&&w.value.trim().length>=10)};
+  w.oninput=()=>{w.dataset.v=w.value;txt=w.value;chk()};w.value=txt;chk();
+  main.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{pick=+b.dataset.i;draw()});
+  main.querySelectorAll('button.card').forEach(b=>b.onclick=()=>{card=b.dataset.id===card?null:b.dataset.id;draw()});
+  $('#colS').onclick=()=>{
+   const o=st[2][pick];
+   logSet({ch:S.ch,type:'평가',q:st[1],a:`${o[0]} / 근거: ${CARDS[card][1]} / “${txt.trim()}”`});
+   main.innerHTML=`<div id="panel"><h2>수첩에 적었다</h2>
+   <div class="qbox" style="font-weight:400"><b>${esc(o[0])}</b><br>“${esc(txt.trim())}”<br><span class="note">근거: ${esc(CARDS[card][1])}</span></div>
+   <div class="desk"><b>${CHAR.yun.n}</b> “${esc(o[1])}”</div>
+   <p class="note">선배의 질문은 차시 마무리 글쓰기에서 다시 생각해 볼 거예요.</p>
+   <div style="display:flex;justify-content:flex-end;margin-top:12px"><button class="btn pri" id="mN">다음 ▶</button></div></div>`;
+   $('#mN').onclick=next;$('#mN').focus();
+  };
+ };
+ let txt='';
+ draw();
+}
+const DOOR_STAGES=[
+ [0,'1960','4·19 혁명 · 3차 개헌','활짝 열림 — 권력을 나누는 내각 책임제'],
+ [1,'1962','5·16 이후 5차 개헌','닫히기 시작 — 군인이 만든 대통령 중심제'],
+ [2,'1969','6차 개헌 (3선 개헌)','거의 닫힘 — 대통령 세 번 연임 허용'],
+ [3,'1972','7차 개헌 (유신 헌법)','닫힘 — 국민이 대통령을 뽑지 못함'],
+ [4,'1974','긴급 조치','자물쇠 — 헌법 비판조차 금지'],
+ [5,'1979','부마 민주 항쟁 · 10·26','금이 감 — 유신 체제 붕괴'],
+ [4,'1980','12·12 · 5·17 비상계엄 확대','다시 자물쇠 — 신군부의 등장'],
+ [0,'1987','6월 민주 항쟁 · 6·29 선언','다시 열림 — 대통령 직선제']
+];
+function openDoorInfo(startBtn){
+ const yearIdx={0:0,1:1,2:2,3:3,4:4,5:5}[S.door];
+ const L=S.lesson,here=L===1?[0,1]:L===2?[2,5]:L===3?[5,7]:[-1,-1];
+ openOv(`<h2 class="h" style="font-size:28px;margin:0 0 6px">🚪 ‘닫히는 문’이란?</h2>
+ <p style="margin:0 0 10px">이 게임에서 <b>문</b>은 <b>민주주의로 들어가는 통로</b>예요. 국민이 직접 대표를 뽑고, 권력을 비판하고, 자유롭게 말할 수 있는 길이지요. 4·19 혁명으로 활짝 열린 이 문이 <b>헌법이 바뀔 때마다</b> 조금씩 닫혀 갔어요. 화면 위쪽의 작은 문이 지금 문의 상태를 보여 줘요.</p>
+ <div class="dstages">${DOOR_STAGES.map(([d,y,ev,lab],i)=>`<div class="dst ${i>=here[0]&&i<=here[1]?'now':''}"><span class="dimg">${doorPic(d)}</span><b>${y}</b><span>${esc(ev)}</span><small>${esc(lab)}</small></div>`).join('')}</div>
+ ${L?`<p class="note" style="margin-top:8px">테두리가 진한 칸이 이번 ${L}차시에서 만날 문이에요.</p>`:''}
+ <p class="qbox" style="margin-top:10px">문은 한 번도 저절로 열리지 않았어요. 누가, 어떻게 문을 닫았고, 누가 다시 열었는지 기자 세마의 수첩을 따라가 보세요.</p>
+ <div style="text-align:right"><button class="btn pri" id="ovN">${startBtn?'시작하기 ▶':'닫기'}</button></div>`,true);
+ $('#ovN').onclick=closeOv;
+}
+
+/* ============ 챕터 끝 · 차시 마무리 ============ */
+function renderEnd(){
+ save();
+ const last=S.ch>=S.range[1];
+ if(last&&S.lesson)return renderLessonEnd();
+ main.innerHTML=`<div id="panel" style="text-align:center"><h2>챕터 ${S.ch+1} 끝 — ${CH[S.ch].t}</h2>
+ <div class="bigdoor">${doorPic(S.door)}</div><p class="lead">문: ${DOORLBL[S.door]} · 이 챕터 기사 신뢰도 ${S.scores[S.ch]??'—'}</p>
+ ${last?`${summaryHTML()}<button class="btn pri" id="eN">처음 화면으로</button>`:`<button class="btn pri" id="eN">챕터 ${S.ch+2}로 ▶</button>`}</div>`;
+ $('#eN').onclick=()=>{if(last){title()}else{S.ch++;S.i=0;S.door=Math.max(S.door,CH[S.ch].door);save();main.innerHTML='';run()}};
+}
+function summaryHTML(){
+ const avg=avgScore(),tot=rangeCards(S.range).length;
+ const ttl=avg>=90?'시대를 기록한 기자':avg>=70?'믿을 만한 기자':avg>=50?'수습 딱지를 뗀 기자':'다시 취재가 필요한 기자';
+ return `<div class="result"><div><b>${avg}</b>평균 신뢰도</div><div><b>${Math.round(S.cards.length/tot*100)}%</b>사료 수집률 (${S.cards.length}/${tot})</div><div><b>${S.miss}</b>미니게임 다시 생각한 횟수</div><div><b style="font-size:22px">${ttl}</b>칭호</div></div>`;
+}
+function renderEnding(){
+ save();
+ main.innerHTML=`<div id="panel">
+ <div style="aspect-ratio:16/9;border:2px solid var(--ink);border-radius:4px;overflow:hidden;margin-bottom:12px;background:#2a2118">${pic('assets/ending.webp',`<span style="width:30%;height:90%;margin:auto">${doorSVG(0)}</span>`)}</div>
+ <p class="endline">문이 다시 열렸다. 열린 문을 지키는 일은 이제 시민의 몫이었다.</p>
+ <p style="text-align:center">1960년 4·19 혁명 → 1979년 부마 민주 항쟁 → 1980년 5·18 민주화 운동 → 1987년 6월 민주 항쟁. 문은 한 번도 저절로 열리지 않았다.</p>
+ <div style="display:flex;justify-content:flex-end"><button class="btn pri" id="eN">마무리 글쓰기 ▶</button></div></div>`;
+ $('#eN').onclick=()=>S.lesson?renderLessonEnd():title();
+}
+function lessonText(L,opinion,cards){
+ const by=t=>S.log.filter(x=>x.type===t).map(x=>`[챕터${x.ch+1}] ${x.q} → ${x.a}`).join('\n');
+ return {
+  제출시각:new Date().toLocaleString('ko-KR'),학번:S.sid,이름:S.name,차시:`${L.n}차시`,
+  질문:L.q,의견:opinion,근거카드:cards.map(c=>CARDS[c][1]).join(' / '),
+  평균신뢰도:avgScore(),사료수집:`${S.cards.length}/${rangeCards(S.range).length}`,미니게임재시도:S.miss,
+  생각기록:[by('생각해 보기'),by('평가')].filter(Boolean).join('\n'),기사기록:by('기사')
+ };
+}
+function renderLessonEnd(){
+ const L=CONFIG.lessons.find(l=>l.n===S.lesson);
+ const mine=S.log.filter(x=>x.type!=='기사');
+ main.innerHTML=`<div id="panel"><h2>${L.n}차시 마무리 — ${esc(L.t)}</h2>
+ <div class="bigdoor" style="height:min(200px,50vw);width:min(160px,40vw)">${doorPic(S.door)}</div>
+ ${summaryHTML()}
+ ${mine.length?`<p class="h" style="font-size:19px;margin:6px 0">이번 차시에 내가 고른 생각</p><ul class="mylog">${mine.map(x=>`<li><span>${esc(x.q)}</span><b>${esc(x.a)}</b></li>`).join('')}</ul>`:''}
+ <p class="h" style="font-size:22px;margin:18px 0 4px">✍️ 나의 생각 쓰기</p>
+ <p class="qbox">${esc(L.q)}</p>
+ ${S.log.filter(x=>x.type==='평가').map(x=>`<p class="note">📓 챕터 ${x.ch+1}에서 수첩에 쓴 나의 평가: ${esc(x.a)} — 선배의 반문도 떠올리며 써 보세요.</p>`).join('')}
+ <p class="note">① 근거로 쓸 사료 카드 2장을 고르세요. <span id="fcn">(0/2)</span></p>
+ <div class="cardgrid" id="fc">${S.cards.map(id=>cardHTML(id,'button')).join('')}</div>
+ <p class="note" style="margin-top:12px">② 고른 카드를 근거로 들어 두세 문장 이상 써 보세요.</p>
+ <textarea id="fw" placeholder="예) ○○ 카드를 보면 … 했다. 그래서 나는 … 라고 생각한다. 왜냐하면 …"></textarea>
+ <p class="note"><span id="fwc">0</span>자 · ${esc(S.sid)} ${esc(S.name)}</p>
+ <p class="msg" id="fmsg"></p>
+ <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button class="btn" id="fC">내 기록 복사</button><button class="btn pri" id="fS" disabled>제출하고 마치기</button></div></div>`;
+ let fc=[];
+ const fw=$('#fw');
+ const chk=()=>{$('#fwc').textContent=fw.value.trim().length;$('#fS').disabled=!(fc.length===2&&fw.value.trim().length>=20)};
+ main.querySelectorAll('#fc .card').forEach(b=>b.onclick=()=>{const id=b.dataset.id;if(fc.includes(id))fc=fc.filter(x=>x!==id);else if(fc.length<2)fc.push(id);
+  main.querySelectorAll('#fc .card').forEach(x=>x.classList.toggle('sel',fc.includes(x.dataset.id)));$('#fcn').textContent=`(${fc.length}/2)`;chk()});
+ fw.oninput=chk;
+ const asText=p=>Object.entries(p).map(([k,v])=>`${k}: ${v}`).join('\n');
+ $('#fC').onclick=async()=>{const t=asText(lessonText(L,fw.value.trim(),fc));
+  try{await navigator.clipboard.writeText(t);$('#fmsg').className='msg ok';$('#fmsg').textContent='복사했어요.'}
+  catch(e){openOv(`<p class="h" style="font-size:20px;margin:0 0 8px">아래 내용을 길게 눌러 복사하세요</p><textarea readonly style="min-height:240px">${esc(t)}</textarea><div style="margin-top:10px"><button class="btn pri" id="ovX">닫기</button></div>`,true);$('#ovX').onclick=closeOv}};
+ $('#fS').onclick=async()=>{
+  const p=lessonText(L,fw.value.trim(),fc);
+  const box=LS.get('door1960_sent',[]);box.push(p);LS.set('door1960_sent',box);
+  const fin=(ok,msg)=>{markDone(L.n);LS.set('door1960',null);
+   main.innerHTML=`<div id="panel" style="text-align:center"><h2>${L.n}차시 끝!</h2><p class="endline">${ok?'기록이 제출되었어요.':'기록을 저장했어요.'}</p><p>${msg}</p>
+   ${L.n<3?`<p class="lead">다음 시간에는 표지에서 <b>${L.n+1}차시</b>를 눌러 이어 가세요.</p>`:'<p class="lead">세 차시를 모두 마쳤어요. 수고했어요!</p>'}
+   <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button class="btn" id="fC2">내 기록 복사</button><button class="btn pri" id="fH">처음 화면으로</button></div></div>`;
+   $('#fH').onclick=title;$('#fC2').onclick=async()=>{try{await navigator.clipboard.writeText(asText(p))}catch(e){}}};
+  if(!CONFIG.submitUrl){fin(false,'제출 주소가 아직 연결되지 않았어요. ‘내 기록 복사’를 눌러 선생님이 안내한 곳에 붙여 넣으세요.');return}
+  $('#fS').disabled=true;$('#fmsg').className='msg';$('#fmsg').textContent='제출하는 중…';
+  try{await fetch(CONFIG.submitUrl,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(p)});fin(true,'선생님의 기록부에 저장되었어요.')}
+  catch(e){$('#fS').disabled=false;$('#fmsg').className='msg no';$('#fmsg').textContent='제출에 실패했어요. 인터넷 연결을 확인하고 다시 눌러 주세요. 계속 안 되면 ‘내 기록 복사’를 이용하세요.'}
+ };
+}
+
+/* ============ 표지 ============ */
+function start(range,lesson){
+ const sid=S.sid,name=S.name;
+ Object.assign(S,{ch:range[0],i:0,range,lesson:lesson||0,door:CH[range[0]].door,cards:[],scores:{},log:[],miss:0,artTry:{},bg:'B1',sid,name});
+ save();main.innerHTML='';run();
+ if(lesson)openDoorInfo(true);
+}
+function title(){
+ closeOv();$('#hud').classList.add('hidden');
+ const sv=load();const dm=doneMap();
+ main.innerHTML=`<div class="cover"><div class="art">${pic('assets/title.webp',`<span style="width:min(220px,40%);height:90%">${doorSVG(1)}</span>`)}</div>
+ <div class="ttl"><h1 id="tH">닫히는 문</h1><p>1960~1987 · 4·19로 열린 민주주의의 문은 어떻게 닫혔고, 다시 열리기까지 무엇이 필요했을까?</p>
+ <p class="note">주인공 세마와 조연(${CHAR.yun.n}·유진·정민·승렬)은 가상 인물입니다. 역사적 사건과 결과는 사실 그대로이며, 미래엔 한국사2 교과서 86~99쪽 내용을 따릅니다.</p>
+ <div class="field"><input id="iSid" inputmode="numeric" placeholder="학번 (예: 10501)" value="${esc(S.sid)}" aria-label="학번"><input id="iName" placeholder="이름" value="${esc(S.name)}" aria-label="이름"></div>
+ <p class="msg no" id="tMsg"></p>
+ <div style="margin:0 0 8px"><button class="btn sm" id="tDoor">🚪 ‘닫히는 문’이란?</button></div>
+ ${sv&&sv.lesson&&sv.sid?`<div style="margin-bottom:8px"><button class="btn" id="tC">이어하기 — ${esc(sv.sid)} ${esc(sv.name)} · ${sv.lesson}차시 챕터 ${sv.ch+1}</button></div>`:''}
+ <p class="h" style="font-size:20px;margin:14px 0 0">차시를 골라 시작하세요</p>
+ <div class="chs">${CONFIG.lessons.map(l=>{const d=dm[S.sid]&&dm[S.sid][l.n];return `<button class="ch" data-l="${l.n}"><b>${l.n}차시 · 챕터 ${l.r[0]+1}${l.r[1]>l.r[0]?'~'+(l.r[1]+1):''}${d?' <span class="done">✓ 완료</span>':''}</b><span>${esc(l.t)}</span></button>`}).join('')}</div>
+ ${TEACHER?`<div class="tpanel"><p class="h" style="font-size:20px;margin:0">교사 모드 (정답 ★ 표시 · 활동 건너뛰기)</p>
+ <div class="chs">${CH.map((c,i)=>`<button class="ch" data-r="${i}"><b>${i+1}. ${c.t}</b><span>${c.y}</span></button>`).join('')}</div>
+ <div style="margin-top:10px"><button class="btn sm" id="tOff">교사 모드 끄기</button></div></div>`:''}
+ </div></div>`;
+ const grab=()=>{S.sid=$('#iSid').value.trim();S.name=$('#iName').value.trim();
+  if(!/^\d{4,6}$/.test(S.sid)||!S.name){$('#tMsg').textContent='학번(숫자)과 이름을 먼저 입력하세요.';(!S.sid?$('#iSid'):$('#iName')).focus();return false}LS.set('door1960_me',{sid:S.sid,name:S.name});return true};
+ main.querySelectorAll('.ch[data-l]').forEach(b=>b.onclick=()=>{if(!grab())return;const l=CONFIG.lessons.find(x=>x.n===+b.dataset.l);start(l.r,l.n)});
+ main.querySelectorAll('.ch[data-r]').forEach(b=>b.onclick=()=>{S.sid=S.sid||'00000';S.name=S.name||'교사';start([+b.dataset.r,+b.dataset.r],0)});
+ const tc=$('#tC');if(tc)tc.onclick=()=>{Object.assign(S,sv);main.innerHTML='';run()};
+ $('#tDoor').onclick=()=>openDoorInfo(false);
+ const to=$('#tOff');if(to)to.onclick=()=>{TEACHER=false;title()};
+ // 교사 모드: 제목을 3초 안에 5번 누르면 비밀번호 입력
+ let taps=[];$('#tH').onclick=()=>{const n=Date.now();taps=taps.filter(t=>n-t<3000).concat(n);if(taps.length>=5){taps=[];
+  openOv(`<p class="h" style="font-size:22px;margin:0 0 8px">교사 확인</p><div class="field"><input id="pin" type="password" inputmode="numeric" placeholder="비밀번호" aria-label="비밀번호"></div><p class="msg no" id="pinMsg"></p><button class="btn pri" id="pinOk">확인</button> <button class="btn" id="ovX">취소</button>`);
+  $('#ovX').onclick=closeOv;
+  const ok=()=>{if($('#pin').value===CONFIG.teacherPin){TEACHER=true;closeOv();title()}else $('#pinMsg').textContent='비밀번호가 다릅니다.'};
+  $('#pinOk').onclick=ok;$('#pin').onkeydown=e=>{if(e.key==='Enter')ok()}}};
+}
+
+/* ============ 공통 버튼 ============ */
+$('#bArchive').onclick=()=>{
+ const all=rangeCards(S.range);
+ openOv(`<h2 class="h" style="font-size:28px;margin:0 0 4px">🗂️ 사료함</h2><p class="note">이번 차시에 모은 카드 ${S.cards.length}/${all.length}장 · 아직 못 모은 카드는 흐리게 보여요.</p>
+ <div class="cardgrid">${all.map(id=>S.cards.includes(id)?cardHTML(id):`<div class="card locked"><span class="ty 기록">?</span><b>아직 모으지 못한 사료</b></div>`).join('')}</div>
+ <div style="text-align:right;margin-top:12px"><button class="btn pri" id="ovX">닫기</button></div>`,true);
+ $('#ovX').onclick=closeOv;
+};
+$('#bHome').onclick=()=>{save();title()};
+$('#doorMini').onclick=()=>openDoorInfo(false);
+$('#bSkip').onclick=()=>{
+ const s=CH[S.ch].s;let j=S.i+1;
+ while(j<s.length&&!['mini','article','end','ending','door'].includes(s[j][0])){if(s[j][0]==='card'&&!S.cards.includes(s[j][1]))S.cards.push(s[j][1]);if(s[j][0]==='bg')S.bg=s[j][1];j++}
+ closeOv();S.i=Math.min(j,s.length-1);main.innerHTML='';run();
+};
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&ov.classList.contains('on')){const x=$('#ovX');if(x)closeOv();return}
+ if((e.key==='Enter'||e.key===' ')&&!['TEXTAREA','INPUT','SELECT','BUTTON'].includes(document.activeElement.tagName)){
+  const b=ov.classList.contains('on')?$('#ovN'):$('#bNext');if(b){e.preventDefault();b.click()}}
+});
+{const me=LS.get('door1960_me',null);if(me){S.sid=me.sid||'';S.name=me.name||''}}
+title();
+}
+</script>
+</body>
+</html>
