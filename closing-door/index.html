@@ -129,6 +129,11 @@ select{font-size:16px;min-height:44px;padding:4px 8px;border:2px solid var(--ink
 .endline{font-family:"Do Hyeon";font-size:clamp(24px,4vw,34px);line-height:1.25;text-align:center;margin:10px 0;text-wrap:balance}
 .note{font-size:13px;color:var(--muted)}
 .hidden{display:none!important}
+.exbox{margin:8px 0 10px;padding:12px 16px;border:2px dashed var(--olive);border-radius:4px;background:color-mix(in srgb,var(--olive) 8%,var(--paper))}
+.exbox b{font-family:"Do Hyeon";font-weight:400;font-size:18px}
+.exbox ol{margin:6px 0 8px;padding-left:1.3em}.exbox li{margin:2px 0}
+.exbox q{display:block;quotes:none;padding:8px 12px;background:var(--paper);border-left:4px solid var(--olive);font-size:16px}
+.exbox .note{margin:6px 0 0}
 .dstages{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
 .dst{display:grid;gap:2px;padding:8px;border:2px solid var(--line);border-radius:4px;background:var(--paper2);font-size:14px;line-height:1.35}
 .dst.now{border-color:var(--brick);box-shadow:0 0 0 2px color-mix(in srgb,var(--brick) 30%,transparent)}
@@ -273,7 +278,7 @@ const CH=[
 ['hg:determined','쏟아진 요구들을 정리해 보자. 기사는 정리에서 시작한다.'],
 ['mini','m1'],
 ['article'],
-['column','장면 내각은 실패한 정부였을까, 기회를 빼앗긴 정부였을까?',[['실패한 정부였다','그렇게 볼 근거가 있지. 다만 1년도 채 안 되는 시간이었다는 점, 그 사이 경제 개발 계획과 지방 자치제를 준비했다는 점도 함께 생각해 봐.'],['기회를 빼앗긴 정부였다','5·16이 개혁을 끊어 버린 건 사실이야. 그래도 장면 내각이 부정 선거 처벌이나 통일 운동 요구를 제대로 받아들이지 못한 한계는 없었을까?'],['둘 다 맞다','균형 잡힌 시각이야. 그렇다면 둘 중 어느 쪽이 더 큰 원인이었는지, 근거로 가려 보는 게 기자의 일이지.']]],
+['column','장면 내각은 실패한 정부였을까, 기회를 빼앗긴 정부였을까?',[['실패한 정부였다','그렇게 볼 근거가 있지. 다만 1년도 채 안 되는 시간이었다는 점, 그 사이 경제 개발 계획과 지방 자치제를 준비했다는 점도 함께 생각해 봐.'],['기회를 빼앗긴 정부였다','5·16이 개혁을 끊어 버린 건 사실이야. 그래도 장면 내각이 부정 선거 처벌이나 통일 운동 요구를 제대로 받아들이지 못한 한계는 없었을까?'],['둘 다 맞다','균형 잡힌 시각이야. 그렇다면 둘 중 어느 쪽이 더 큰 원인이었는지, 근거로 가려 보는 게 기자의 일이지.']],'「3차 개헌 (1960.6)」 카드를 보면 장면 내각은 권력을 나누는 민주적인 제도로 출발했기 때문에, 1년도 안 되어 군사 정변으로 무너진 것은 기회를 빼앗긴 것이라고 생각한다.'],
 ['bg','B4'],
 ['nar','1961년 5월 16일 새벽. 한강 다리 위로 군용 트럭이 줄지어 지나갔다.'],
 ['hg:worried','이른 새벽, 문 너머에서 군홧발 소리가 들렸다.'],
@@ -382,7 +387,7 @@ const CH=[
 ['door',5,'10·26 사태 — 닫힌 문에 금이 갔다'],
 ['hg:thinking','문에 금이 갔다. 빛이 새어 들어온다. 그런데…'],
 ['nar','문은 금이 갔다. 그러나 열린 것은 아니었다.'],
-['column','유신 체제를 무너뜨린 가장 큰 힘은 무엇이었을까?',[['학생과 시민의 저항 (부마 민주 항쟁)','거리의 힘이 컸지. 그런데 1978년 선거에서 야당이 득표율로 앞선 것처럼, 표로 드러난 국민의 뜻은 어떤 역할을 했을까?'],['야당과 국민의 표 (1978년 총선, 김영삼 제명 반발)','표의 힘을 봤구나. 다만 그 표가 거리의 항쟁으로 이어지지 않았다면 유신이 흔들렸을까?'],['정권 내부의 갈등 (10·26 사태)','직접적인 계기는 맞아. 그런데 정권 안에서 갈등이 터진 까닭은 무엇이었을까? 부마 민주 항쟁을 어떻게 막을지를 두고 다툰 것 아니었나?']]],
+['column','유신 체제를 무너뜨린 가장 큰 힘은 무엇이었을까?',[['학생과 시민의 저항 (부마 민주 항쟁)','거리의 힘이 컸지. 그런데 1978년 선거에서 야당이 득표율로 앞선 것처럼, 표로 드러난 국민의 뜻은 어떤 역할을 했을까?'],['야당과 국민의 표 (1978년 총선, 김영삼 제명 반발)','표의 힘을 봤구나. 다만 그 표가 거리의 항쟁으로 이어지지 않았다면 유신이 흔들렸을까?'],['정권 내부의 갈등 (10·26 사태)','직접적인 계기는 맞아. 그런데 정권 안에서 갈등이 터진 까닭은 무엇이었을까? 부마 민주 항쟁을 어떻게 막을지를 두고 다툰 것 아니었나?']],'「부마 민주 항쟁 (1979.10)」 카드를 보면 부산과 마산 시민들이 유신 철폐를 외치며 거리로 나왔기 때문에, 유신을 무너뜨린 가장 큰 힘은 시민의 저항이었다고 생각한다.'],
 ['end']]},
 {t:'다시 열린 문',y:'1979~1987 · 5·18 민주화 운동과 6월 민주 항쟁',door:5,s:[
 ['bg','B13'],
@@ -430,7 +435,7 @@ const CH=[
 ['hg:determined','역사 교사가 되겠다던 꿈은 이루지 못했다. 하지만 내 수첩은 언젠가 누군가의 교실에서 역사가 될 것이다.'],
 ['yun:smile','(오랜만에 편집국에 들른 남궁 선배) 이번엔 받아 적기만 하지 마라. 열린 문은 지켜야 열려 있는 거다.'],
 ['article'],
-['column','6월 민주 항쟁이 대통령 직선제를 이끌어 낼 수 있었던 가장 큰 힘은 무엇이었을까?',[['박종철·이한열 사건이 불러온 국민의 분노','분노가 사람들을 거리로 불러냈지. 그런데 분노만으로 정부가 물러섰을까? 그 분노를 하나로 모은 조직은 없었을까?'],['학생·노동자·회사원까지 함께한 폭넓은 참여','넥타이 부대까지 나섰다는 게 핵심이지. 그렇다면 1980년 5월의 광주는 왜 그렇게 고립될 수밖에 없었을까?'],['5·18 이후 쌓여 온 민주화 운동의 경험','긴 흐름을 봤구나. 광주의 기억이 6월로 이어졌지. 그렇다면 1987년에 그 경험을 거리로 불러낸 직접적인 계기는 무엇이었을까?']]],
+['column','6월 민주 항쟁이 대통령 직선제를 이끌어 낼 수 있었던 가장 큰 힘은 무엇이었을까?',[['박종철·이한열 사건이 불러온 국민의 분노','분노가 사람들을 거리로 불러냈지. 그런데 분노만으로 정부가 물러섰을까? 그 분노를 하나로 모은 조직은 없었을까?'],['학생·노동자·회사원까지 함께한 폭넓은 참여','넥타이 부대까지 나섰다는 게 핵심이지. 그렇다면 1980년 5월의 광주는 왜 그렇게 고립될 수밖에 없었을까?'],['5·18 이후 쌓여 온 민주화 운동의 경험','긴 흐름을 봤구나. 광주의 기억이 6월로 이어졌지. 그렇다면 1987년에 그 경험을 거리로 불러낸 직접적인 계기는 무엇이었을까?']],'「6·29 선언 (일부, 1987)」 카드를 보면 정부가 직선제를 받아들인 것은 학생부터 회사원까지 전국에서 함께 시위에 나섰기 때문이므로, 가장 큰 힘은 폭넓은 참여였다고 생각한다.'],
 ['ending']]}
 ];
 
@@ -477,9 +482,9 @@ const CONFIG={
  // 교사 모드 비밀번호: 표지의 '닫히는 문' 제목을 빠르게 5번 누르면 입력 창이 열립니다.
  teacherPin:'0419',
  lessons:[
-  {n:1,r:[0,1],t:'4·19 혁명 이후 ~ 박정희 정부 초기',q:'4·19 혁명으로 활짝 열린 문은 왜 1년 만에 다시 닫히기 시작했을까? 사료 카드 2장을 근거로 나의 생각을 써 보자.'},
-  {n:2,r:[2,3],t:'3선 개헌 ~ 유신 체제 ~ 10·26',q:'법으로 비판을 금지하면, 비판은 사라질까? 유신 체제 시기의 사료 카드 2장을 근거로 나의 생각을 써 보자.'},
-  {n:3,r:[4,4],t:'12·12 사태 ~ 5·18 ~ 6월 민주 항쟁',q:'4·19 혁명부터 6월 민주 항쟁까지, 닫힌 문을 다시 연 힘은 무엇이었을까? 그리고 그 문을 지키기 위해 오늘의 시민에게 필요한 것은 무엇일까? 사료 카드 2장을 근거로 써 보자.'}
+  {n:1,r:[0,1],t:'4·19 혁명 이후 ~ 박정희 정부 초기',q:'4·19 혁명으로 활짝 열린 문은 왜 1년 만에 다시 닫히기 시작했을까? 사료 카드 2장을 근거로 나의 생각을 써 보자.',ex:'「교원 노조 결성 (1960)」 카드를 보면 4·19 이후 교원들까지 노동조합을 만들며 요구를 쏟아냈지만, 장면 내각은 이를 받아들이지 못했다. 그리고 「혁명 공약 (1961)」 카드처럼 군인들은 이런 혼란을 구실로 정권을 잡았다. 그래서 나는 장면 내각의 한계가 틈을 만들었지만, 문을 직접 닫은 힘은 5·16 군사 정변이었다고 생각한다.'},
+  {n:2,r:[2,3],t:'3선 개헌 ~ 유신 체제 ~ 10·26',q:'법으로 비판을 금지하면, 비판은 사라질까? 유신 체제 시기의 사료 카드 2장을 근거로 나의 생각을 써 보자.',ex:'「긴급 조치 1호 (일부, 1974)」 카드를 보면 정부는 헌법을 비판하는 말조차 처벌했다. 그런데 「제10대 국회 의원 선거 (1978)」 카드에서는 야당 득표율이 여당을 앞질렀고, 「부마 민주 항쟁 (1979.10)」 카드처럼 시민들은 다시 거리로 나왔다. 그래서 나는 법으로 입을 막아도 비판은 사라지지 않고, 오히려 더 커진다고 생각한다.'},
+  {n:3,r:[4,4],t:'12·12 사태 ~ 5·18 ~ 6월 민주 항쟁',q:'4·19 혁명부터 6월 민주 항쟁까지, 닫힌 문을 다시 연 힘은 무엇이었을까? 그리고 그 문을 지키기 위해 오늘의 시민에게 필요한 것은 무엇일까? 사료 카드 2장을 근거로 써 보자.',ex:'「박종철 고문치사 사건 (1987.1)」 카드를 보면 정부의 거짓말이 드러나자 국민의 분노가 폭발했고, 「6·29 선언 (일부, 1987)」 카드처럼 결국 정부는 직선제를 받아들였다. 그래서 나는 문을 다시 연 힘이 진실을 알고 함께 행동한 시민이었다고 생각한다. 그 문을 지키려면 오늘의 우리도 뉴스가 사실인지 확인하고, 선거에 꼭 참여해야 한다.'}
  ]
 };
 
@@ -709,6 +714,14 @@ function renderArticle(){
  draw();
 }
 
+/* ============ 글쓰기 예시 상자 ============ */
+function exBox(ex,steps){
+ return `<div class="exbox"><b>💡 이렇게 써 보세요</b>
+ <ol>${steps.map(t=>`<li>${t}</li>`).join('')}</ol>
+ <q>${esc(ex)}</q>
+ <p class="note">예시는 짜임을 보여 주는 참고용이에요. 그대로 옮기지 말고, <b style="font-family:inherit;font-size:inherit">내가 고른 카드와 내 생각</b>으로 써 주세요. 예시와 다른 입장도 좋아요.</p></div>`;
+}
+
 /* ============ 취재 수첩: 나의 평가 ============ */
 function renderColumn(st){
  const prev=S.log.find(x=>x.ch===S.ch&&x.type==='평가');
@@ -722,7 +735,8 @@ function renderColumn(st){
   <p class="h" style="font-size:19px;margin:16px 0 6px">② 내 판단을 뒷받침하는 사료 카드 1장</p>
   <div class="cardgrid">${S.cards.map(id=>cardHTML(id,'button').replace('class="card"',`class="card ${card===id?'sel':''}"`)).join('')}</div>
   <p class="h" style="font-size:19px;margin:16px 0 6px">③ 한 문장으로 쓰기</p>
-  <textarea id="colW" style="min-height:80px" placeholder="예) ○○ 카드를 보면 장면 내각은 … 했기 때문에 …(이)라고 생각한다."></textarea>
+  ${st[3]?exBox(st[3],['<b style="font-family:inherit;font-size:inherit">근거</b> — 「카드 이름」 카드를 보면 …','<b style="font-family:inherit;font-size:inherit">이유</b> — … 했기 때문에','<b style="font-family:inherit;font-size:inherit">판단</b> — …(이)라고 생각한다.']):''}
+  <textarea id="colW" style="min-height:80px" placeholder="「카드 이름」 카드를 보면 … 했기 때문에 …(이)라고 생각한다."></textarea>
   <p class="note"><span id="colC">0</span>자 · 이 문장은 ${S.lesson||''}차시 마무리 기록에 함께 남습니다.</p>
   <div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="btn pri" id="colS" disabled>수첩에 적기</button></div></div>`;
   const w=$('#colW');w.value=w.dataset.v||'';
@@ -812,7 +826,8 @@ function renderLessonEnd(){
  <p class="note">① 근거로 쓸 사료 카드 2장을 고르세요. <span id="fcn">(0/2)</span></p>
  <div class="cardgrid" id="fc">${S.cards.map(id=>cardHTML(id,'button')).join('')}</div>
  <p class="note" style="margin-top:12px">② 고른 카드를 근거로 들어 두세 문장 이상 써 보세요.</p>
- <textarea id="fw" placeholder="예) ○○ 카드를 보면 … 했다. 그래서 나는 … 라고 생각한다. 왜냐하면 …"></textarea>
+ ${L.ex?exBox(L.ex,['<b style="font-family:inherit;font-size:inherit">근거 ①</b> — 첫 번째 카드에서 알 수 있는 사실','<b style="font-family:inherit;font-size:inherit">근거 ②</b> — 두 번째 카드에서 알 수 있는 사실','<b style="font-family:inherit;font-size:inherit">나의 생각</b> — 그래서 나는 …(이)라고 생각한다 (왜냐하면 …)']):''}
+ <textarea id="fw" placeholder="「카드 이름」 카드를 보면 … . 「카드 이름」 카드에서는 … . 그래서 나는 …(이)라고 생각한다."></textarea>
  <p class="note"><span id="fwc">0</span>자 · ${esc(S.sid)} ${esc(S.name)}</p>
  <p class="msg" id="fmsg"></p>
  <div style="display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap"><button class="btn" id="fC">내 기록 복사</button><button class="btn pri" id="fS" disabled>제출하고 마치기</button></div></div>`;
